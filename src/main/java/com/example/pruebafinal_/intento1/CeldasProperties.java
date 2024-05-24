@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class CeldasProperties {
 
-    protected Celdas original;
+    protected Celdas original; //
 
     private Properties individuosProperties= new Properties();
     private Properties recursosProperties= new Properties();
