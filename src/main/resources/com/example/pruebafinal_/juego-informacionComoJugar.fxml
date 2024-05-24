@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane style="-fx-background-color: #99ea63; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.intento1.InformacionComoJugarControllers">
+<GridPane style="-fx-background-color: #759364; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.intento1.InformacionComoJugarControllers">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
@@ -27,7 +27,7 @@
           <RowConstraints maxHeight="242.80000000000004" minHeight="10.0" prefHeight="51.19999999999993" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="663.0" style="-fx-background-color: #60da0f;" text="¿Cómo jugar?">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="55.0" prefWidth="663.0" style="-fx-background-color: #99be7f;" text="¿Cómo jugar?">
                <font>
                   <Font name="Century Schoolbook" size="24.0" />
                </font>

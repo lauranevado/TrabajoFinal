@@ -2,23 +2,46 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.Controllers">
+
+<GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.Controllers">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <Label alignment="CENTER" layoutX="206.0" layoutY="132.0" text="EL JUEGO DE LA VIDA">
-         <font>
-            <Font name="Century Schoolbook" size="16.0" />
-         </font></Label>
-      <Button alignment="CENTER" layoutX="144.0" layoutY="204.0" mnemonicParsing="false" onAction="#onNuevaPartidaButtonClick" prefHeight="42.0" prefWidth="123.0" text="Nueva Partida">
-         <font>
-            <Font name="Century Schoolbook" size="14.0" />
-         </font></Button>
-      <Button alignment="CENTER" layoutX="331.0" layoutY="204.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" text="Cargar Partida">
-         <font>
-            <Font name="Century Schoolbook" size="14.0" />
-         </font>
-      </Button>
+      <ImageView fitHeight="446.0" fitWidth="716.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Imagenes/El juego de la vida.Portada1.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="362.0" prefWidth="663.0">
+         <children>
+            <Label alignment="CENTER" layoutX="24.0" layoutY="98.0" prefHeight="62.0" prefWidth="641.0" text="EL JUEGO DE LA VIDA" textFill="WHITE">
+               <font>
+                  <Font name="Century Schoolbook" size="36.0" />
+               </font>
+            </Label>
+            <Button alignment="CENTER" layoutX="144.0" layoutY="204.0" mnemonicParsing="false" onAction="#onNuevaPartidaButtonClick" prefHeight="42.0" prefWidth="123.0" text="Nueva Partida">
+               <font>
+                  <Font name="Century Schoolbook" size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" layoutX="427.0" layoutY="204.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="123.0" text="Cargar Partida">
+               <font>
+                  <Font name="Century Schoolbook" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</GridPane>
