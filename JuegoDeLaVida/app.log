@@ -1,0 +1,29 @@
+2024-05-25 00:32:24.194 - INFO  - com.example.pruebafinal_.intento1.JuegoPantallaPpalControllers - Inicialización en ejecución del controlador
+
+2024-05-25 00:32:24.624 - INFO  - com.example.pruebafinal_.intento1.JuegoDeLaVida - El juego de la vida
+2024-05-25 00:32:26.667 - INFO  - com.example.pruebafinal_.intento1.JuegoPantallaPpalControllers - Se ha cerrado la pantalla
+2024-05-25 00:32:26.668 - INFO  - com.example.pruebafinal_.intento1.JuegoPantallaPpalControllers - Crear una nueva partida
+2024-05-25 00:32:26.882 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Inicialización del controlador de los parámetros
+2024-05-25 00:32:26.908 - INFO  - com.example.pruebafinal_.intento1.JuegoPantallaPpalControllers - Parámetros
+2024-05-25 00:32:26.926 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider turnos de vida
+2024-05-25 00:32:26.926 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad reproducción
+2024-05-25 00:32:26.926 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de muerte
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de clonado
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider altura del tablero
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider lado del tablero
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider tiempo de aparición de los recursos
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de aparición de los recursos
+2024-05-25 00:32:26.927 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider vida del agua
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider vida de la comida
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider vida de la montaña
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider vida del tesoror
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider vida de la biblioteca
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de aparición del agua 
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de clonado
+2024-05-25 00:32:26.928 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de aparición del tesoro
+2024-05-25 00:32:26.929 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de aparición de la comida  
+2024-05-25 00:32:26.929 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad de aparición de la montaña
+2024-05-25 00:32:26.929 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Slider probabilidad del pozo
+2024-05-25 00:32:28.454 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Click en boton siguiente
+2024-05-25 00:32:28.939 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Click en boton siguiente
+2024-05-25 00:32:29.231 - INFO  - com.example.pruebafinal_.intento1.ParametrosControllers - Iniciar partida
