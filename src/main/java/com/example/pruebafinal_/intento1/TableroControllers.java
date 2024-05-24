@@ -114,48 +114,7 @@ public class TableroControllers implements Initializable {
 
 
     // Los vértices no los metemos directamente, sino que nos quedamos con ellos en variables
-    // para poder jugar después.
-//    Vertice<String> v1 = new Vertice<>("A");
-//    Vertice<String> v2 = new Vertice<>("B");
-//    Vertice<String> v3 = new Vertice<>("C");
-//    Vertice<String> v4 = new Vertice<>("D");
-//    Vertice<String> v5 = new Vertice<>("E");
-//    Vertice<String> v6 = new Vertice<>("F");
-//    Vertice<String> v7 = new Vertice<>("G");
-//    Vertice<String> v8 = new Vertice<>("H");
-//
-//    public void añadir() {
-//        //Añadimos los vértices
-//        graph.addVertices(v1);
-//        graph.addVertices(v2);
-//        graph.addVertices(v3);
-//        graph.addVertices(v4);
-//        graph.addVertices(v5);
-//        graph.addVertices(v6);
-//        graph.addVertices(v7);
-//        graph.addVertices(v8);
-//
-//        //Añadimos las aristas
-//        graph.addArco(new Arista<>(v1, v2, 1.0));
-//        graph.addArco(new Arista<>(v2, v3, 1.5));
-//        graph.addArco(new Arista<>(v3, v4, 2.0));
-//        graph.addArco(new Arista<>(v4, v5, 1.0));
-//        graph.addArco(new Arista<>(v5, v6, 0.5));
-//        graph.addArco(new Arista<>(v6, v7, 1.0));
-//        graph.addArco(new Arista<>(v7, v8, 1.5));
-//        graph.addArco(new Arista<>(v8, v1, 2.5));
-//        graph.addArco(new Arista<>(v1, v3, 1.8));
-//        graph.addArco(new Arista<>(v2, v4, 2.2));
-//        graph.addArco(new Arista<>(v3, v5, 0.9));
-//        graph.addArco(new Arista<>(v4, v6, 1.1));
-//        graph.addArco(new Arista<>(v5, v7, 2.0));
-//        graph.addArco(new Arista<>(v6, v8, 1.7));
-//    }
-//    public void añadirTodosLosVertices(){
-//        for(Integer i=0;i<celdas.getNumeroElementos();i++){
-//            Vertice =
-//        }
-//    }
+
     @FXML
     private void crearNuevoTablero(){
         tableroJuego.setVisible(true);
