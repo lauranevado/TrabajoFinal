@@ -23,7 +23,18 @@
     "primero": {
       "data": {
         "individuos": {},
-        "recursos": {},
+        "recursos": {
+          "primero": {
+            "data": {
+              "tipo": 1,
+              "turnosDeVida": 3,
+              "posicion": 0,
+              "probabilidadGeneral": 70,
+              "probabilidadRecurso": 16,
+              "propiedad": 1
+            }
+          }
+        },
         "identificadorCelda": 0,
         "coordX": 0,
         "coordY": 0
@@ -42,8 +53,8 @@
             "recursos": {
               "primero": {
                 "data": {
-                  "tipo": 4,
-                  "turnosDeVida": 2,
+                  "tipo": 5,
+                  "turnosDeVida": 3,
                   "posicion": 2,
                   "probabilidadGeneral": 70,
                   "probabilidadRecurso": 16,
@@ -58,7 +69,18 @@
           "siguiente": {
             "data": {
               "individuos": {},
-              "recursos": {},
+              "recursos": {
+                "primero": {
+                  "data": {
+                    "tipo": 2,
+                    "turnosDeVida": 3,
+                    "posicion": 3,
+                    "probabilidadGeneral": 70,
+                    "probabilidadRecurso": 16,
+                    "propiedad": 1
+                  }
+                }
+              },
               "identificadorCelda": 3,
               "coordX": 0,
               "coordY": 3
@@ -66,38 +88,7 @@
             "siguiente": {
               "data": {
                 "individuos": {},
-                "recursos": {
-                  "primero": {
-                    "data": {
-                      "tipo": 0,
-                      "turnosDeVida": 3,
-                      "posicion": 4,
-                      "probabilidadGeneral": 70,
-                      "probabilidadRecurso": 16,
-                      "propiedad": 1
-                    },
-                    "siguiente": {
-                      "data": {
-                        "tipo": 3,
-                        "turnosDeVida": 3,
-                        "posicion": 4,
-                        "probabilidadGeneral": 70,
-                        "probabilidadRecurso": 16,
-                        "propiedad": 1
-                      },
-                      "siguiente": {
-                        "data": {
-                          "tipo": 4,
-                          "turnosDeVida": 3,
-                          "posicion": 4,
-                          "probabilidadGeneral": 70,
-                          "probabilidadRecurso": 16,
-                          "propiedad": 1
-                        }
-                      }
-                    }
-                  }
-                },
+                "recursos": {},
                 "identificadorCelda": 4,
                 "coordX": 0,
                 "coordY": 4
@@ -108,22 +99,12 @@
                   "recursos": {
                     "primero": {
                       "data": {
-                        "tipo": 2,
+                        "tipo": 3,
                         "turnosDeVida": 3,
                         "posicion": 5,
                         "probabilidadGeneral": 70,
                         "probabilidadRecurso": 16,
                         "propiedad": 1
-                      },
-                      "siguiente": {
-                        "data": {
-                          "tipo": 4,
-                          "turnosDeVida": 3,
-                          "posicion": 5,
-                          "probabilidadGeneral": 70,
-                          "probabilidadRecurso": 16,
-                          "propiedad": 1
-                        }
                       }
                     }
                   },
@@ -134,28 +115,7 @@
                 "siguiente": {
                   "data": {
                     "individuos": {},
-                    "recursos": {
-                      "primero": {
-                        "data": {
-                          "tipo": 0,
-                          "turnosDeVida": 3,
-                          "posicion": 6,
-                          "probabilidadGeneral": 70,
-                          "probabilidadRecurso": 16,
-                          "propiedad": 1
-                        },
-                        "siguiente": {
-                          "data": {
-                            "tipo": 4,
-                            "turnosDeVida": 3,
-                            "posicion": 6,
-                            "probabilidadGeneral": 70,
-                            "probabilidadRecurso": 16,
-                            "propiedad": 1
-                          }
-                        }
-                      }
-                    },
+                    "recursos": {},
                     "identificadorCelda": 6,
                     "coordX": 1,
                     "coordY": 1
@@ -174,12 +134,22 @@
                         "recursos": {
                           "primero": {
                             "data": {
-                              "tipo": 2,
-                              "turnosDeVida": 2,
+                              "tipo": 1,
+                              "turnosDeVida": 3,
                               "posicion": 8,
                               "probabilidadGeneral": 70,
                               "probabilidadRecurso": 16,
                               "propiedad": 1
+                            },
+                            "siguiente": {
+                              "data": {
+                                "tipo": 5,
+                                "turnosDeVida": 3,
+                                "posicion": 8,
+                                "probabilidadGeneral": 70,
+                                "probabilidadRecurso": 16,
+                                "propiedad": 1
+                              }
                             }
                           }
                         },
@@ -193,8 +163,8 @@
                           "recursos": {
                             "primero": {
                               "data": {
-                                "tipo": 1,
-                                "turnosDeVida": 2,
+                                "tipo": 2,
+                                "turnosDeVida": 3,
                                 "posicion": 9,
                                 "probabilidadGeneral": 70,
                                 "probabilidadRecurso": 16,
@@ -202,8 +172,8 @@
                               },
                               "siguiente": {
                                 "data": {
-                                  "tipo": 3,
-                                  "turnosDeVida": 2,
+                                  "tipo": 5,
+                                  "turnosDeVida": 3,
                                   "posicion": 9,
                                   "probabilidadGeneral": 70,
                                   "probabilidadRecurso": 16,
@@ -219,18 +189,7 @@
                         "siguiente": {
                           "data": {
                             "individuos": {},
-                            "recursos": {
-                              "primero": {
-                                "data": {
-                                  "tipo": 3,
-                                  "turnosDeVida": 3,
-                                  "posicion": 10,
-                                  "probabilidadGeneral": 70,
-                                  "probabilidadRecurso": 16,
-                                  "propiedad": 1
-                                }
-                              }
-                            },
+                            "recursos": {},
                             "identificadorCelda": 10,
                             "coordX": 2,
                             "coordY": 0
@@ -238,18 +197,7 @@
                           "siguiente": {
                             "data": {
                               "individuos": {},
-                              "recursos": {
-                                "primero": {
-                                  "data": {
-                                    "tipo": 5,
-                                    "turnosDeVida": 3,
-                                    "posicion": 11,
-                                    "probabilidadGeneral": 70,
-                                    "probabilidadRecurso": 16,
-                                    "propiedad": 1
-                                  }
-                                }
-                              },
+                              "recursos": {},
                               "identificadorCelda": 11,
                               "coordX": 2,
                               "coordY": 1
@@ -257,38 +205,7 @@
                             "siguiente": {
                               "data": {
                                 "individuos": {},
-                                "recursos": {
-                                  "primero": {
-                                    "data": {
-                                      "tipo": 0,
-                                      "turnosDeVida": 3,
-                                      "posicion": 12,
-                                      "probabilidadGeneral": 70,
-                                      "probabilidadRecurso": 16,
-                                      "propiedad": 1
-                                    },
-                                    "siguiente": {
-                                      "data": {
-                                        "tipo": 2,
-                                        "turnosDeVida": 3,
-                                        "posicion": 12,
-                                        "probabilidadGeneral": 70,
-                                        "probabilidadRecurso": 16,
-                                        "propiedad": 1
-                                      },
-                                      "siguiente": {
-                                        "data": {
-                                          "tipo": 3,
-                                          "turnosDeVida": 3,
-                                          "posicion": 12,
-                                          "probabilidadGeneral": 70,
-                                          "probabilidadRecurso": 16,
-                                          "propiedad": 1
-                                        }
-                                      }
-                                    }
-                                  }
-                                },
+                                "recursos": {},
                                 "identificadorCelda": 12,
                                 "coordX": 2,
                                 "coordY": 2
@@ -296,47 +213,29 @@
                               "siguiente": {
                                 "data": {
                                   "individuos": {},
-                                  "recursos": {
-                                    "primero": {
-                                      "data": {
-                                        "tipo": 0,
-                                        "turnosDeVida": 3,
-                                        "posicion": 13,
-                                        "probabilidadGeneral": 70,
-                                        "probabilidadRecurso": 16,
-                                        "propiedad": 1
-                                      },
-                                      "siguiente": {
-                                        "data": {
-                                          "tipo": 3,
-                                          "turnosDeVida": 3,
-                                          "posicion": 13,
-                                          "probabilidadGeneral": 70,
-                                          "probabilidadRecurso": 16,
-                                          "propiedad": 1
-                                        }
-                                      }
-                                    }
-                                  },
+                                  "recursos": {},
                                   "identificadorCelda": 13,
                                   "coordX": 2,
                                   "coordY": 3
                                 },
                                 "siguiente": {
                                   "data": {
-                                    "individuos": {},
-                                    "recursos": {
+                                    "individuos": {
                                       "primero": {
                                         "data": {
-                                          "tipo": 3,
-                                          "turnosDeVida": 3,
-                                          "posicion": 14,
-                                          "probabilidadGeneral": 70,
-                                          "probabilidadRecurso": 16,
-                                          "propiedad": 1
+                                          "tipo": 1,
+                                          "id": 1,
+                                          "turnosDeVida": 5,
+                                          "generacion": 0,
+                                          "padres": {},
+                                          "pReproCadaIndividuo": 50,
+                                          "pClonacionCadaIndividuo": 50,
+                                          "celdaObjetivoNormal": 16,
+                                          "colaIndividuo": {}
                                         }
                                       }
                                     },
+                                    "recursos": {},
                                     "identificadorCelda": 14,
                                     "coordX": 2,
                                     "coordY": 4
@@ -344,18 +243,7 @@
                                   "siguiente": {
                                     "data": {
                                       "individuos": {},
-                                      "recursos": {
-                                        "primero": {
-                                          "data": {
-                                            "tipo": 0,
-                                            "turnosDeVida": 2,
-                                            "posicion": 15,
-                                            "probabilidadGeneral": 70,
-                                            "probabilidadRecurso": 16,
-                                            "propiedad": 1
-                                          }
-                                        }
-                                      },
+                                      "recursos": {},
                                       "identificadorCelda": 15,
                                       "coordX": 3,
                                       "coordY": 0
@@ -367,7 +255,7 @@
                                           "primero": {
                                             "data": {
                                               "tipo": 2,
-                                              "turnosDeVida": 2,
+                                              "turnosDeVida": 3,
                                               "posicion": 16,
                                               "probabilidadGeneral": 70,
                                               "probabilidadRecurso": 16,
@@ -375,8 +263,8 @@
                                             },
                                             "siguiente": {
                                               "data": {
-                                                "tipo": 4,
-                                                "turnosDeVida": 2,
+                                                "tipo": 5,
+                                                "turnosDeVida": 3,
                                                 "posicion": 16,
                                                 "probabilidadGeneral": 70,
                                                 "probabilidadRecurso": 16,
@@ -391,35 +279,11 @@
                                       },
                                       "siguiente": {
                                         "data": {
-                                          "individuos": {
-                                            "primero": {
-                                              "data": {
-                                                "tipo": 0,
-                                                "id": 0,
-                                                "turnosDeVida": 4,
-                                                "generacion": 0,
-                                                "padres": {},
-                                                "pReproCadaIndividuo": 40,
-                                                "pClonacionCadaIndividuo": 40,
-                                                "celdaObjetivoNormal": 0,
-                                                "colaIndividuo": {
-                                                  "primero": {
-                                                    "data": 4,
-                                                    "siguiente": {
-                                                      "data": 4
-                                                    }
-                                                  },
-                                                  "ultimo": {
-                                                    "data": 4
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          },
+                                          "individuos": {},
                                           "recursos": {
                                             "primero": {
                                               "data": {
-                                                "tipo": 4,
+                                                "tipo": 2,
                                                 "turnosDeVida": 3,
                                                 "posicion": 17,
                                                 "probabilidadGeneral": 70,
@@ -435,28 +299,7 @@
                                         "siguiente": {
                                           "data": {
                                             "individuos": {},
-                                            "recursos": {
-                                              "primero": {
-                                                "data": {
-                                                  "tipo": 1,
-                                                  "turnosDeVida": 2,
-                                                  "posicion": 18,
-                                                  "probabilidadGeneral": 70,
-                                                  "probabilidadRecurso": 16,
-                                                  "propiedad": 1
-                                                },
-                                                "siguiente": {
-                                                  "data": {
-                                                    "tipo": 2,
-                                                    "turnosDeVida": 3,
-                                                    "posicion": 18,
-                                                    "probabilidadGeneral": 70,
-                                                    "probabilidadRecurso": 16,
-                                                    "propiedad": 1
-                                                  }
-                                                }
-                                              }
-                                            },
+                                            "recursos": {},
                                             "identificadorCelda": 18,
                                             "coordX": 3,
                                             "coordY": 3
@@ -467,12 +310,22 @@
                                               "recursos": {
                                                 "primero": {
                                                   "data": {
-                                                    "tipo": 4,
+                                                    "tipo": 0,
                                                     "turnosDeVida": 3,
                                                     "posicion": 19,
                                                     "probabilidadGeneral": 70,
                                                     "probabilidadRecurso": 16,
                                                     "propiedad": 1
+                                                  },
+                                                  "siguiente": {
+                                                    "data": {
+                                                      "tipo": 3,
+                                                      "turnosDeVida": 3,
+                                                      "posicion": 19,
+                                                      "probabilidadGeneral": 70,
+                                                      "probabilidadRecurso": 16,
+                                                      "propiedad": 1
+                                                    }
                                                   }
                                                 }
                                               },
@@ -482,19 +335,22 @@
                                             },
                                             "siguiente": {
                                               "data": {
-                                                "individuos": {},
-                                                "recursos": {
+                                                "individuos": {
                                                   "primero": {
                                                     "data": {
                                                       "tipo": 2,
-                                                      "turnosDeVida": 2,
-                                                      "posicion": 20,
-                                                      "probabilidadGeneral": 70,
-                                                      "probabilidadRecurso": 16,
-                                                      "propiedad": 1
+                                                      "id": 0,
+                                                      "turnosDeVida": 5,
+                                                      "generacion": 0,
+                                                      "padres": {},
+                                                      "pReproCadaIndividuo": 50,
+                                                      "pClonacionCadaIndividuo": 50,
+                                                      "celdaObjetivoNormal": 0,
+                                                      "colaIndividuo": {}
                                                     }
                                                   }
                                                 },
+                                                "recursos": {},
                                                 "identificadorCelda": 20,
                                                 "coordX": 4,
                                                 "coordY": 0
@@ -502,7 +358,28 @@
                                               "siguiente": {
                                                 "data": {
                                                   "individuos": {},
-                                                  "recursos": {},
+                                                  "recursos": {
+                                                    "primero": {
+                                                      "data": {
+                                                        "tipo": 1,
+                                                        "turnosDeVida": 3,
+                                                        "posicion": 21,
+                                                        "probabilidadGeneral": 70,
+                                                        "probabilidadRecurso": 16,
+                                                        "propiedad": 1
+                                                      },
+                                                      "siguiente": {
+                                                        "data": {
+                                                          "tipo": 3,
+                                                          "turnosDeVida": 3,
+                                                          "posicion": 21,
+                                                          "probabilidadGeneral": 70,
+                                                          "probabilidadRecurso": 16,
+                                                          "propiedad": 1
+                                                        }
+                                                      }
+                                                    }
+                                                  },
                                                   "identificadorCelda": 21,
                                                   "coordX": 4,
                                                   "coordY": 1
@@ -510,28 +387,7 @@
                                                 "siguiente": {
                                                   "data": {
                                                     "individuos": {},
-                                                    "recursos": {
-                                                      "primero": {
-                                                        "data": {
-                                                          "tipo": 0,
-                                                          "turnosDeVida": 2,
-                                                          "posicion": 22,
-                                                          "probabilidadGeneral": 70,
-                                                          "probabilidadRecurso": 16,
-                                                          "propiedad": 1
-                                                        },
-                                                        "siguiente": {
-                                                          "data": {
-                                                            "tipo": 4,
-                                                            "turnosDeVida": 2,
-                                                            "posicion": 22,
-                                                            "probabilidadGeneral": 70,
-                                                            "probabilidadRecurso": 16,
-                                                            "propiedad": 1
-                                                          }
-                                                        }
-                                                      }
-                                                    },
+                                                    "recursos": {},
                                                     "identificadorCelda": 22,
                                                     "coordX": 4,
                                                     "coordY": 2
@@ -539,38 +395,7 @@
                                                   "siguiente": {
                                                     "data": {
                                                       "individuos": {},
-                                                      "recursos": {
-                                                        "primero": {
-                                                          "data": {
-                                                            "tipo": 5,
-                                                            "turnosDeVida": 2,
-                                                            "posicion": 23,
-                                                            "probabilidadGeneral": 70,
-                                                            "probabilidadRecurso": 16,
-                                                            "propiedad": 1
-                                                          },
-                                                          "siguiente": {
-                                                            "data": {
-                                                              "tipo": 1,
-                                                              "turnosDeVida": 3,
-                                                              "posicion": 23,
-                                                              "probabilidadGeneral": 70,
-                                                              "probabilidadRecurso": 16,
-                                                              "propiedad": 1
-                                                            },
-                                                            "siguiente": {
-                                                              "data": {
-                                                                "tipo": 3,
-                                                                "turnosDeVida": 3,
-                                                                "posicion": 23,
-                                                                "probabilidadGeneral": 70,
-                                                                "probabilidadRecurso": 16,
-                                                                "propiedad": 1
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      },
+                                                      "recursos": {},
                                                       "identificadorCelda": 23,
                                                       "coordX": 4,
                                                       "coordY": 3
@@ -578,18 +403,7 @@
                                                     "siguiente": {
                                                       "data": {
                                                         "individuos": {},
-                                                        "recursos": {
-                                                          "primero": {
-                                                            "data": {
-                                                              "tipo": 5,
-                                                              "turnosDeVida": 2,
-                                                              "posicion": 24,
-                                                              "probabilidadGeneral": 70,
-                                                              "probabilidadRecurso": 16,
-                                                              "propiedad": 1
-                                                            }
-                                                          }
-                                                        },
+                                                        "recursos": {},
                                                         "identificadorCelda": 24,
                                                         "coordX": 4,
                                                         "coordY": 4
@@ -620,6 +434,6 @@
       }
     }
   },
-  "numIndividuosVivos": 1,
-  "turnosJuego": 1
+  "numIndividuosVivos": 2,
+  "turnosJuego": 0
 }
