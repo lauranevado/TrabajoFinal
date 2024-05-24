@@ -4,7 +4,7 @@ import com.example.pruebafinal_.intento1.Listas.ListaEnlazada;
 import com.google.gson.annotations.Expose;
 
 public class DatosCargados {
-    /////////////////////////////PARÁMETROS/////////////////////////////
+    /////////////////////////////PARÁMETROS////////////////////////////
 
     //Atributos del individuo
     @Expose
