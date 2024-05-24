@@ -723,7 +723,7 @@ public class TableroControllers implements Initializable {
             System.out.println("Partida cargada: (num turnos)" + datosCargadosPartida1.getTurnosJuego());
         }
     }
-    /////////////////////////////////////Bucle de control////////////////////////////////////////////
+    ////////////////////////////////////////Bucle de control////////////////////////////////////////////
 
     @FXML
     public void updateTablero() {
