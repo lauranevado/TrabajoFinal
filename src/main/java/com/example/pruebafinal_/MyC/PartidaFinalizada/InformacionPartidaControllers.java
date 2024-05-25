@@ -33,8 +33,8 @@ public class InformacionPartidaControllers implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         log.info("Se ha inicializado");
-        turnosJugadosLabel.setText("10");
-        individuosVivosLabel.setText("1");
+        turnosJugadosLabel.setText("8");
+        individuosVivosLabel.setText("3");
         numClonacionesLabel.setText("2");
         numReproduccionesLabel.setText("1");
 

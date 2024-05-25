@@ -1,8 +1,5 @@
 package com.example.pruebafinal_.MyC;
 
-//import com.example.pruebafinal_.intento1.gsonAdapters.gsonAdapterCeldas;
-import com.example.pruebafinal_.MyC.Celdas.Celdas;
-import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaEnlazada;
 import com.example.pruebafinal_.MyC.Guardado.DatosCargados;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

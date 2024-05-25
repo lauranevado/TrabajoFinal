@@ -1003,7 +1003,7 @@ public class TableroControllers implements Initializable {
 
                 }
 
-                else if(camino.getCoste()<=grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData()).getCoste()) {
+                else if(camino.getCoste()>=grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData()).getCoste()) {
                     camino = grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData());
                 }
 
@@ -1108,7 +1108,7 @@ public class TableroControllers implements Initializable {
 
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {//es advanced
                     log.info("Se mueve el avanzado");
-                    moverAvanzado(i, j);
+                    moverNormal(i, j);
 
                 }
             }
@@ -1120,7 +1120,7 @@ public class TableroControllers implements Initializable {
     @FXML
     public void reproduccion() {
         for (Integer i = 0; i < celdas.getNumeroElementos(); i++) {
-            if (celdas.getElemento(i).getData().individuos.getNumeroElementos() >= 2) {
+            if (celdas.getElemento(i).getData().individuos.getNumeroElementos() == 2) {
                 Celdas celdaRep = celdas.getElemento(i).getData();
                 if (celdaRep.individuos.getNumeroElementos() == 2) { //Sólo hay dos individuos para reproducirse
                     Individuo ind1 = celdas.getElemento(i).getData().individuos.getElemento(0).getData();
@@ -1174,7 +1174,7 @@ public class TableroControllers implements Initializable {
     public void clonacion() {
         for (Integer j = 0; j < celdas.getNumeroElementos(); j++) {
             ListaEnlazada<Individuo> individuoListaEnlazada = celdas.getElemento(j).getData().individuos;
-            if (individuoListaEnlazada != null) {
+            if (individuoListaEnlazada.getNumeroElementos() ==1) {
                 int longitud = celdas.getElemento(j).getData().individuos.getNumeroElementos();
                 for (Integer i = 0; i < longitud; i++) {
                     Random random = new Random();
