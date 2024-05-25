@@ -49,7 +49,7 @@ public class  CeldasControllers implements Initializable {
 
     //Añadir Recursos e individuos
     @FXML
-    private void addRecurso(){
+    public void addRecurso(){
         grupoRecursos.selectedToggleProperty().addListener((observable , oldValue, newValue )-> {
             RadioButton recursoElegido=(RadioButton) newValue;
             if (recursoElegido != null){

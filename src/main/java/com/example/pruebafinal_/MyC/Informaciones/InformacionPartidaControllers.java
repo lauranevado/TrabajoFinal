@@ -1,6 +1,6 @@
 package com.example.pruebafinal_.MyC.Informaciones;
 
-import com.example.pruebafinal_.MyC.Informaciones.InformacionPartida;
+import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartida;
 import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 

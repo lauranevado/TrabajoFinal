@@ -1,4 +1,4 @@
-package com.example.pruebafinal_.MyC.Informaciones;
+package com.example.pruebafinal_.MyC.PartidaFinalizada;
 
 
 import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaEnlazada;

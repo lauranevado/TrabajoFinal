@@ -25,4 +25,6 @@ module com.example.pruebafinal_ {
     opens com.example.pruebafinal_.MyC.Datos to com.google.gson, javafx.fxml;
     exports com.example.pruebafinal_.MyC.Guardado;
     opens com.example.pruebafinal_.MyC.Guardado to com.google.gson, javafx.fxml;
+    exports com.example.pruebafinal_.MyC.PartidaFinalizada;
+    opens com.example.pruebafinal_.MyC.PartidaFinalizada to com.google.gson, javafx.fxml;
 }

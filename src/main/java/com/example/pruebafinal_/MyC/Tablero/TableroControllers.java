@@ -55,7 +55,7 @@ import org.apache.logging.log4j.Logger;
 
 
 public class TableroControllers implements Initializable {
-    private static final Logger log= LogManager.getLogger(JuegoDeLaVida.class);
+    private  final Logger log= LogManager.getLogger(JuegoDeLaVida.class);
 
     //Necesitamos
     private TableroProperties modelo;
@@ -263,17 +263,21 @@ public class TableroControllers implements Initializable {
                     Individuo individuoBasico = new Individuo(0, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), new Cola<>());
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
+                    log.info("Se creó un nuevo individuo ");
+
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoBasico);
                 } else if (randomTipoIndividuo == 1 ) {
                     Individuo individuoNormal = new Individuo(1, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), celdaAleatoria(i), new Cola<>());
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoNormal);
+                    log.info("Se creó un nuevo individuo ");
                 } else if (randomTipoIndividuo == 2 ) {
                     Individuo individuoAvanzado = new Individuo(2, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new Cola<>());
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoAvanzado);
+                    log.info("Se creó un nuevo individuo ");
                 }
             }
         }
@@ -289,6 +293,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso agua = new Recurso(0, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pAgua().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(agua);
+                        log.info("Se creó un nuevo recurso ");
                     }
 
                 }
@@ -297,6 +302,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso comida = new Recurso(1, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pComida().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(comida);
+                        log.info("Se creó un nuevo recurso ");
                     }
 
                 }
@@ -305,6 +311,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso montana = new Recurso(2, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pMontana().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(montana);
+                        log.info("Se creó un nuevo recurso ");
                     }
 
                 }
@@ -313,6 +320,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso tesoro = new Recurso(3, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pTesoro().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(tesoro);
+                        log.info("Se creó un nuevo recurso ");
                     }
 
                 }
@@ -321,6 +329,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso biblioteca = new Recurso(4, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pBiblioteca().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(biblioteca);
+                        log.info("Se creó un nuevo recurso ");
                     }
 
                 }
@@ -329,6 +338,7 @@ public class TableroControllers implements Initializable {
                     if (celdas.getElemento(i).getData().getRecursos().getNumeroElementos() < 3) {
                         Recurso pozo = new Recurso(5, tiempoDeAparicionProperty().getValue(), i, probabilidadDeAparicionProperty().getValue(), pPozo().getValue(), 1);
                         celdas.getElemento(i).getData().recursos.add(pozo);
+                        log.info("Se creó un nuevo recurso ");
                     }
                 }
             }
@@ -345,10 +355,13 @@ public class TableroControllers implements Initializable {
                 for (int j = 0; j < celdas.getElemento(i).getData().individuos.getNumeroElementos(); j++) {
                     if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 0) {
                         bas++;
+                        log.info("Se actualizaron los porcentajes de los individuos");
                     } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 1) {
                         nor++;
+                        log.info("Se actualizaron los porcentajes de los individuos");
                     } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {
                         av++;
+                        log.info("Se actualizaron los porcentajes de los individuos");
                     }
 
                 }
@@ -381,6 +394,7 @@ public class TableroControllers implements Initializable {
     @FXML
     public GridPane actualizarPaneLateral() {
         actualizarPorcentajesIndividuos();
+        log.info("Se actualizaró el panel lateral");
 
         VBox cajaInformacion = new VBox(10); //10 es el espacio entre cada caja que haya dentro
         cajaInformacion.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -525,7 +539,7 @@ public class TableroControllers implements Initializable {
 
     @FXML
     private void onCeldaButtonClick(Button celdaButton, ActionEvent event) {
-        System.out.println("Se ha abierto la celda " + celdaButton.getId());
+       log.info("Se ha abierto la celda " + celdaButton.getId());
         Stage celdaStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Parametros.class.getResource("/com/example/pruebafinal_/juego-celda.fxml"));
         try {
@@ -541,7 +555,7 @@ public class TableroControllers implements Initializable {
             celdasControllers.setStage(celdaStage);
             celdaStage.setResizable(false);
             celdaStage.setOnHidden(evento -> {
-                System.out.println("Se cerró la ventana de la celda " + celdaButton.getId());
+                log.info("Se cerró la ventana de la celda " + celdaButton.getId());
                 actualizarPaneLateral();
             });
             celdaStage.showAndWait();
@@ -565,6 +579,7 @@ public class TableroControllers implements Initializable {
                     Color color1 = celdas.getElemento(idCelda).getData().recursos.getElemento(contador).getData().getColor();
                     celdas.getElemento(idCelda).getData().getListaRectangulos().getElemento(contador).getData().setBackground(Background.fill(color1));
                     contador++;
+                    log.info("Se actualizó una celda");
                 }
             }
         }
@@ -576,6 +591,7 @@ public class TableroControllers implements Initializable {
                         celdas.getElemento(idCelda).getData().getListaRectangulos().getElemento(contador).getData().setBackground(Background.fill(color2));
                         contador2++;
                         contador++;
+                        log.info("Se actualizó una celda");
                     }
                 }
             }
@@ -586,6 +602,7 @@ public class TableroControllers implements Initializable {
             int restantes = 6 - numTot;
             for (Integer i = 0; i < restantes; i++) {
                 celdas.getElemento(idCelda).getData().getListaRectangulos().getElemento(numTot + i).getData().setBackground(Background.fill(Color.LIGHTGREY));
+
             }
         }
     }
@@ -595,14 +612,14 @@ public class TableroControllers implements Initializable {
     @FXML
     protected void onPauseButtonClick() {
         tableroJuego.setDisable(false);
-        System.out.println("Se ha pausado el juego");
+        log.info("Se ha pausado el juego");
         setPausa(true);
     }
 
     @FXML
     protected void onPlayButtonClick() {
         tableroJuego.setDisable(true);
-        System.out.println("Se ha reanudado el juego");
+        log.info("Se ha reanudado el juego");
         setPausa(false);
         bucleDeControlIniciar();
     }
@@ -614,7 +631,7 @@ public class TableroControllers implements Initializable {
 
     @FXML
     protected void onConfiguracionButtonClick(ActionEvent event) {
-        System.out.println("Se ha clicado el botón de configuración");
+        log.info("Se ha clicado el botón de configuración");
         Stage stageConfig = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(JuegoDeLaVida.class.getResource("/com/example/pruebafinal_/juego-parametros-partida.fxml"));
         try {
@@ -643,7 +660,7 @@ public class TableroControllers implements Initializable {
 
     @FXML
     protected void onStopButtonClick(ActionEvent event){
-        System.out.println("Se ha pulsado el botón de stop");
+       log.info("Se ha pulsado el botón de stop");
         onPauseButtonClick();
         Stage guardarStage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(Parametros.class.getResource("/com/example/pruebafinal_/juego-guardar.fxml"));
@@ -675,11 +692,12 @@ public class TableroControllers implements Initializable {
     @FXML
     public void onGuardarButtonClick(){
         guardarPartida();
-        System.out.println("Se ha guardado la partida");
+        log.info("Se ha guardado la partida");
     }
 
 
     public void guardarPartida(){
+
         DatosCargados datosPartida1= new DatosCargados(turnosDeVidaProperty().getValue().intValue(), pRepProperty().getValue().intValue(),pMuerteProperty().getValue().intValue(), pClonProperty().getValue().intValue(),ladoProperty().getValue().intValue(), alturaProperty().getValue().intValue(),tiempoDeAparicionProperty().getValue().intValue(), probabilidadDeAparicionProperty().getValue().intValue(),vidaAguaSumaProperty().getValue().intValue(),pAgua().getValue().intValue(),vidaComidaSumaProperty().getValue().intValue(),pComida().getValue().intValue(),vidaMontanaRestaProperty().getValue().intValue(),pMontana().getValue().intValue(),pReproTesoroSumaProperty().getValue().intValue(),pTesoro().getValue().intValue(),pClonacionBibliotecaSumaProperty().getValue().intValue(),pBiblioteca().getValue().intValue(),0,pPozo().getValue().intValue(), celdas, getNumIndividuosTotales(), getTurnosJuego());
         setPartidaCargada(true);
         String rutaArchivo = "partidas.json";
@@ -694,6 +712,7 @@ public class TableroControllers implements Initializable {
             System.out.println(celdas);
             System.out.println(datosCargadosPartida1.celdas);
         }
+        log.info("Se guardó la partida");
     }
     ////////////////////////////////////////Bucle de control////////////////////////////////////////////
 
@@ -702,6 +721,7 @@ public class TableroControllers implements Initializable {
         for (Integer i = 0; i < celdas.getNumeroElementos(); i++) {
             updateCelda(i);
         }
+        log.info("Se actualizaró el tablero");
     }
 
     @FXML
@@ -717,7 +737,7 @@ public class TableroControllers implements Initializable {
                 if (ind.getpClonacionCadaIndividuo() > 0) {
                     ind.setpClonacionCadaIndividuo(ind.getpClonacionCadaIndividuo() - 10);
                 }
-                System.out.println("Se ha restado un turno de vida al indviduo " + ind.getId());
+                log.info("Se ha restado un turno de vida al indviduo " + ind.getId());
                 ind.colaIndividuo.add(ind.getTurnosDeVida());
                 if (ind.getTurnosDeVida() == 0) {
                     celdas.getElemento(i).getData().individuos.getElemento(j).getData().colaIndividuo.add("Se le ha restado un turno de vida al indviduo ");
@@ -818,6 +838,7 @@ public class TableroControllers implements Initializable {
 
 
     //////////Tipos de movimientos según el tipo del individuo//////////////////////
+
     /////////////Movimiento del tipo básico///////////////
     @FXML
     public void moverIndividuoBasico(Individuo indBasico, int celda, int posIndividuo) {
@@ -826,13 +847,15 @@ public class TableroControllers implements Initializable {
         try {
 
             int numAleatorio= random.nextInt(celdasAdy.getNumeroElementos());
+            int coordX = celdasAdy.getElemento(numAleatorio).getData().getCoordX();
+            int coordY= celdasAdy.getElemento(numAleatorio).getData().getCoordY();
 
             // Mover el individuo a la nueva celda
 
-            Celdas celda1 = celdas.getElemento(celdasAdy.getElemento(numAleatorio).getData().getIdentificadorCelda()).getData();
+            Celdas celda1 = celdas.getElemento(getPosCelda(coordX,coordY)).getData();
             celda1.individuos.add(indBasico);
             celdas.getElemento(celda).getData().individuos.del(posIndividuo);
-            indBasico.colaIndividuo.add("Se movió el individuo de la celda" + celda + " a la " );
+            log.info("Se movió el individuo de la celda" + celda + " a la " );
 
         }catch(Exception e){
             e.printStackTrace();
@@ -907,7 +930,6 @@ public class TableroControllers implements Initializable {
     public void moverNormal(int celdaOriginal, int individuo) {
 
         //Necesitamos la celda origen y destino
-        //Coordenadas de la celda origen
         int coordOriX = celdas.getElemento(celdaOriginal).getData().getCoordX();
         int coordOriY = celdas.getElemento(celdaOriginal).getData().getCoordY();
 
@@ -1152,12 +1174,13 @@ public class TableroControllers implements Initializable {
                     System.out.println("La nuevaaaaaaaaa essss " + celdaAleatoria(i));
 
                     moverNormal(i, j);
+                    updateTablero();
                     System.out.println("ya se ha movido el normal.");
 
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {//es advanced
                     System.out.println("Se mueve el avanzado");
-                    moverIndividuoBasico(celdas.getElemento(i).getData().individuos.getElemento(j).getData(), celdas.getElemento(i).getData().getIdentificadorCelda(), j);
-
+                    moverNormal(i, j);
+                    updateTablero();
 
                 }
             }
