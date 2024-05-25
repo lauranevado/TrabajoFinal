@@ -50,7 +50,7 @@ public class GuardarControllers implements Initializable {
             guardarStage.setOnHidden(evento -> {
                 System.out.println("Se cerró la ventana de guardado");
             });
-            guardarStage.showAndWait();
+            guardarStage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
