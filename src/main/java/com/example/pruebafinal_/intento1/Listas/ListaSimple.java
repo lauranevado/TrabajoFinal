@@ -1,5 +1,6 @@
 package com.example.pruebafinal_.intento1.Listas;
 
+import com.example.pruebafinal_.intento1.Celdas;
 import com.example.pruebafinal_.intento1.grafo.Vertice;
 
 /**
@@ -143,6 +144,13 @@ public class ListaSimple<tipoDeDato> {
             return null ;
         }
     }
+//    public Celdas getCelda(int pos){
+//        if (datos[pos] != null) {
+//            return  datos[pos];
+//        }else{
+//            return null ;
+//        }
+//    }
 
 
     public ListaSimple<tipoDeDato> vuelta(){

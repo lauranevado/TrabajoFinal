@@ -23,18 +23,18 @@ public class Camino<tipoDeDato> {
     public ListaSimple getCamino(){return camino;}
 
     public double getCoste(){return coste;}
-    @Override
-    public String toString() {
-        StringBuffer salida = new StringBuffer();
-        salida.append("======= Volcado del camino desde [" + getCamino().getElementoLS(0).getData() + "] hasta [" + getCamino().getElementoLS(camino.getNumeroElementos()-1).getData() + "]: ======\n");
-        //salida.append("Referencias a los vértices: " + this.getCami + "\n");
-        salida.append("Lista de datos en vértices: [-");
-        for (Integer i=0; i<this.getCamino().getNumeroElementos();i++) {            //Recorremos la lista
-            salida.append(this.getCamino().getElementoLS(i).getData()+"-");
-        }
-        salida.append("] - Coste: " + this.getCoste() + "\n");
 
-        return salida.toString();
-    }
+//    public String toString() {
+//        StringBuffer salida = new StringBuffer();
+//        salida.append("======= Volcado del camino desde [" + getCamino().getElementoLS(0).getData() + "] hasta [" + getCamino().getElementoLS(camino.getNumeroElementos()-1).getData() + "]: ======\n");
+//        //salida.append("Referencias a los vértices: " + this.getCami + "\n");
+//        salida.append("Lista de datos en vértices: [-");
+//        for (Integer i=0; i<this.getCamino().getNumeroElementos();i++) {            //Recorremos la lista
+//            salida.append(this.getCamino().getElementoLS(i).getData()+"-");
+//        }
+//        salida.append("] - Coste: " + this.getCoste() + "\n");
+//
+//        return salida.toString();
+//    }
 
 }

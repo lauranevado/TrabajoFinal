@@ -19,7 +19,7 @@
    <children>
       <ImageView fitHeight="907.0" fitWidth="1680.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Imagenes/Imagen1.jpg" />
+            <Image url="@../../../Imagenes/El juego de la vida.Portada1.jpg" />
          </image>
       </ImageView>
       <GridPane alignment="CENTER" prefHeight="400.0" prefWidth="600.0">

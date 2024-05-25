@@ -1,5 +1,6 @@
 package com.example.pruebafinal_.intento1.grafo;
 
+import com.example.pruebafinal_.intento1.Celdas;
 import com.example.pruebafinal_.intento1.Listas.ListaSimple;
 
 import java.nio.channels.NonReadableChannelException;
@@ -69,10 +70,10 @@ public class Grafo<tipoDeDato> {
         }
         return false;
     }
-    public Camino caminoMinimo(tipoDeDato origen,tipoDeDato destino){
+    public Camino<Vertice<tipoDeDato>> caminoMinimo(tipoDeDato origen,tipoDeDato destino){
 
-        Vertice verticeO= getVertice(origen);
-        Vertice verticeD = getVertice(destino);
+        Vertice<tipoDeDato> verticeO= getVertice(origen);
+        Vertice<tipoDeDato> verticeD = getVertice(destino);
         return   getCaminoMinimo(verticeO,verticeD);
 
     }

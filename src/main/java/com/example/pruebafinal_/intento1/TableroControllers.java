@@ -219,6 +219,7 @@ public class TableroControllers implements Initializable {
                     System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
                     onCeldaButtonClick(celdaButton, event);
                 });
+
                 GridPane fondoCelda = new GridPane();
                 fondoCelda.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 ListaEnlazada<StackPane> listaCuadraditos = new ListaEnlazada<>();
@@ -249,21 +250,6 @@ public class TableroControllers implements Initializable {
 //        crearRecursos();
         updateTablero();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         ///////////////////////Funciones///////////////////////////////////
 
@@ -849,26 +835,21 @@ public class TableroControllers implements Initializable {
     /////////////Movimiento del tipo básico///////////////
     @FXML
     public void moverIndividuoBasico(Individuo indBasico, int celda, int posIndividuo) {
-        ListaEnlazada<Integer> listaCoordX = calcularCoordenadasAdyacentesX(celda);
-        ListaEnlazada<Integer> listaCoordY = calcularCoordenadasAdyacentesY(celda);
+        Random random= new Random();
+        ListaEnlazada<Celdas> celdasAdy= calcularCoordenadasAdyacentes(celda);
+        try {
 
-        //  ListaEnlazada<Integer> nuevasCoordenadas = nuevaCelda(listaCoordX, listaCoordY);
-        ListaEnlazada<Integer> nuevasCoordenadas = nuevaCelda(listaCoordX, listaCoordY);
-
-        // Verificar que se obtuvieron nuevas coordenadas válidas
-        if (!nuevasCoordenadas.isVacia() && nuevasCoordenadas.getNumeroElementos() == 2) {
-            int nuevaCoordX = nuevasCoordenadas.getElemento(0).getData();
-            int nuevaCoordY = nuevasCoordenadas.getElemento(1).getData();
-            int nuevaCeldaPos = getPosCelda(nuevaCoordX, nuevaCoordY);
+            int numAleatorio= random.nextInt(celdasAdy.getNumeroElementos());
 
             // Mover el individuo a la nueva celda
-            celdas.getElemento(nuevaCeldaPos).getData().individuos.add(indBasico);
-            indBasico.colaIndividuo.add("Se movió el individuo de la celda" + celda + " a la " + nuevaCeldaPos);
+
+            Celdas celda1 = celdas.getElemento(celdasAdy.getElemento(numAleatorio).getData().getIdentificadorCelda()).getData();
+            celda1.individuos.add(indBasico);
             celdas.getElemento(celda).getData().individuos.del(posIndividuo);
+            indBasico.colaIndividuo.add("Se movió el individuo de la celda" + celda + " a la " );
 
-
-        } else {
-            System.out.println("No se encontraron coordenadas válidas para mover el individuo.");
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -886,211 +867,35 @@ public class TableroControllers implements Initializable {
         return nuevasCoordenadas;
     }
 
-    public ListaEnlazada<Integer> calcularCoordenadasAdyacentesX(int posCelda) {
-        ListaEnlazada<Integer> listaX = new ListaEnlazada<>();
+    public ListaEnlazada<Celdas> calcularCoordenadasAdyacentes(int posCelda) {
+        ListaEnlazada<Celdas> lista = new ListaEnlazada<>();
         int coordX = celdas.getElemento(posCelda).getData().getCoordX();
+        int coordY = celdas.getElemento(posCelda).getData().getCoordX();
 
-        // Arriba
         if (coordX > 0) {
-            listaX.add(coordX - 1);
+            Celdas izquierda = celdas.getElemento(getPosCelda(coordX - 1, coordY)).getData();
+            lista.add(izquierda);
         }
-        // Abajo
-        if (coordX < ladoProperty().getValue() - 1) {
-            listaX.add(coordX + 1);
-        }
-        // Coordenada actual
-        listaX.add(coordX);
-
-        return listaX;
-    }
-
-    public ListaEnlazada<Integer> calcularCoordenadasAdyacentesY(int posCelda) {
-        ListaEnlazada<Integer> listaY = new ListaEnlazada<>();
-        int coordY = celdas.getElemento(posCelda).getData().getCoordY();
-
-        // Izquierda
         if (coordY > 0) {
-            listaY.add(coordY - 1);
+            Celdas arriba = celdas.getElemento(getPosCelda(coordX, coordY - 1)).getData();
+            lista.add(arriba);
         }
-        // Derecha
-        if (coordY < alturaProperty().getValue() - 1) {
-            listaY.add(coordY + 1);
-        }
-        // Coordenada actual
-        listaY.add(coordY);
+        if (coordX > 0 && coordY > 0) {
+            Celdas diagonalIzq = celdas.getElemento(getPosCelda(coordX  , coordY + 1)).getData();
+            lista.add(diagonalIzq);
 
-        return listaY;
+        }
+        if (coordX < ladoProperty().getValue() - 1 && coordY > 0) {
+            Celdas diagonalDer = celdas.getElemento(getPosCelda(coordX + 1, coordX )).getData();
+            lista.add(diagonalDer);
+        }
+        return lista;
+
     }
+
+
 
     /////////////Movimiento del tipo normal///////////////
-
-//    public int  busquedaRecursoCercano(int celdaPos){ ////Primero buscamos el recurso más cercano
-//        int coordX=celdas.getElemento(celdaPos).getData().getCoordX();
-//        int coordY=celdas.getElemento(celdaPos).getData().getCoordY();
-//        for(Integer i=coordX-1;i<ladoProperty().getValue();i++){
-//            for(Integer j=coordY-1;j<alturaProperty().getValue();j++){
-//                if( celdas.getElemento(getPosCelda(i,j)).getData().recursos!=null){
-//                    return celdas.getElemento(getPosCelda(i,j)).getData().getIdentificadorCelda();
-//                }
-//            }
-//        }
-//
-//        return 0;
-//    }
-
-    public int busquedaRecursoDestino(int celdaPos) {   ///Recorremos el tablero en forma de espiral desde la celda origen.
-
-        int celdaDestino = -1;
-
-        int[] directions = {0, 1, 0, -1, 0}; // Right, Down, Left, Up (x, y) movements
-        int dir = 0; // start with direction 'Right'
-
-        int lado = celdas.getElemento(celdaPos).getData().getCoordX();
-        int altura = celdas.getElemento(celdaPos).getData().getCoordY();
-        int totalCells = lado * altura;
-
-        for (int i = 0; i < totalCells; i++) {
-            if (lado >= 0 && lado < ladoProperty().getValue() && altura >= 0 && altura < alturaProperty().getValue()) {
-                if (celdas.getElemento(getPosCelda(lado, altura)).getData().recursos != null && celdaDestino == -1) {
-                    Integer contador = 0; ///////Hacemos un contadro para comprobar que ningun recurso es el pozo
-                    for (Integer j = 0; j < celdas.getElemento(getPosCelda(lado, altura)).getData().recursos.getNumeroElementos(); j++) {
-                        if (celdas.getElemento(getPosCelda(lado, altura)).getData().recursos.getElemento(j).getData().getColor() != Color.DARKGREY) {
-                            contador++;
-                        }
-                    }
-                    if (contador != 6) {
-                        return celdas.getElemento(getPosCelda(lado, altura)).getData().getIdentificadorCelda();
-
-                    }
-                }
-            }
-
-            int newR = lado + directions[dir];
-            int newC = altura + directions[dir + 1];
-
-            if (newR >= 0 && newR < ladoProperty().getValue() && newC >= 0 && newC < alturaProperty().getValue()) {
-                lado = newR;
-                altura = newC;
-            } else {
-                dir = (dir + 1) % 4; // change direction
-                lado += directions[dir];
-                altura += directions[dir + 1];
-            }
-        }
-
-        return celdaDestino;
-    }
-
-
-    public void moverAvanzado(Vertice origen, Vertice destino, int individuo) {
-
-
-
-
-//        System.out.println("El numero de elementos que hayyyyyyy   "+grafo.getVertices().getNumeroElementos());
-//
-//
-//
-//        System.out.println("Uns arista "+grafo.getAristas().getElementoLS(1).getData().toString());
-//        System.out.println("El bveeertiiiiceeee origen "+origen);
-//        System.out.println("El destinooooo"+ destino);
-//
-//        System.out.println("Los vertices "+grafo.toPrintV());
-//
-//        Mapa<Vertice<Integer>, Camino<Integer>> caminos= grafo.dijkstra( origen);
-//        if(caminos!=null) {
-//            System.out.println("Numero de caminos"+caminos.getNumElem());
-//            if(grafo.isPosible(origen,destino)) {   //Comprobamos que exissten los vertices
-//                if(grafo.caminoMinimo(origen,destino)!=null) {  //Comprobamos que exisgte camino desde el vértice origen hasta el vértice destino
-//                    ListaSimple<Vertice<Integer>> caminoV1V2 = grafo.caminoMinimo(origen, destino).getCamino();
-//                    System.out.println("El camino más corto desde el vertice 2 hasta el 7:");
-//                    if (caminoV1V2 != null) {
-//                        Integer contador = 0;
-//                        while (caminoV1V2.getNumeroElementos() > contador) {    //imprimimos por pantalla todos los vertices
-//                            System.out.println(caminoV1V2.getElementoLS(contador).getData().getData());
-//                            contador++;
-//                        }
-//                    }
-//                }else{
-//                    System.out.println("El camino no existe o es nulo");
-//                }
-//            }else {
-//                System.out.println("No existe dicho camino");
-//            }
-//
-//
-//            if(caminos.getValue( destino)!=null) { //Comprobamos que existe camino desde el vértice origen hasta el vértice destino
-//                ListaSimple<Vertice<String>> caminoHastaV6 = caminos.getValue(destino).getCamino();
-//                System.out.println("El camino más corto desde el vertice 1 hasta el 8:");
-//                if (caminoHastaV6 != null) {
-//                    Integer contador1 = 0;
-//                    while (caminoHastaV6.getNumeroElementos() > contador1) { //imprimimos por pantalla todos los vertices
-//                        System.out.println(caminoHastaV6.getElementoLS(contador1).getData().getData());
-//                        contador1++;
-//                    }
-//                }
-//                System.out.println("El coste del camino más corto desde A hasta H es: " + caminos.getValue(destino).getCoste());
-//
-//            }else{
-//                System.out.println("El camino es nulo o no existe");
-//            }
-//        }
-    }
-//    private  static  void mostrar_caminos(Mapa<Vertice<String>,Camino<String>> todosloscaminos){
-//        Integer contador=0;
-//        while(contador<todosloscaminos.getIndice().getNumeroElementos()){
-//            System.out.println(todosloscaminos.getIndice2().getElementoLS(contador).getData());
-//            contador++;
-//        }
-//
-//
-//    }
-
-
-    ////Necesitaremos la celda en la cual se encuentra el individuo
-
-    public Grafo creamosGrafo() {////Necesitaremos la celda en la cual se encuentra el individuo
-        Grafo<Integer> grafo = new Grafo<>();
-
-        for (Integer i = 0; i < celdas.getNumeroElementos(); i++) {
-            Vertice v = new Vertice<>(celdas.getElemento(i).getData().getIdentificadorCelda());  //Añadimos todos los vertices en orden
-            grafo.addVertices(v);
-            for (Integer m = 0; m < alturaProperty().getValue(); m++) {
-                for (int j = 0; j < ladoProperty().getValue(); j++) {
-                    Vertice verticeOri = new Vertice<>(celdas.getElemento(getPosCelda(i, j)));
-                    if (m > 0) { // celda de arriba
-                        Vertice verticeDest = new Vertice<>(celdas.getElemento(getPosCelda(i - 1, j)));
-                        Arista<Integer> arista = new Arista<>(verticeOri, verticeDest, 1);
-                        grafo.addArco(arista);
-
-                    }
-                    if (m < alturaProperty().getValue() - 1) { // celda de abajo
-                        Vertice verticeDest = new Vertice<>(celdas.getElemento(getPosCelda(i + 1, j)));
-                        Arista<Integer> arista = new Arista<>(verticeOri, verticeDest, 1);
-                        grafo.addArco(arista);
-
-                    }
-                    if (j > 0) { // celda de la izquierda
-                        Vertice verticeDest = new Vertice<>(celdas.getElemento(getPosCelda(i, j - 1)));
-                        Arista<Integer> arista = new Arista<>(verticeOri, verticeDest, 1);
-                        grafo.addArco(arista);
-
-                    }
-                    if (j < ladoProperty().getValue() - 1) { // celda de la derecha
-                        Vertice verticeDest = new Vertice<>(celdas.getElemento(getPosCelda(i, j + 1)));
-                        Arista<Integer> arista = new Arista<>(verticeOri, verticeDest, 1);
-                        grafo.addArco(arista);
-
-                    }
-                }
-            }
-
-        }
-        return grafo;
-
-
-
-    }
 
     public static int celdaAleatoria(int celdaAnterior) {  //Celda aleatoria con recurso
         Random random = new Random();
@@ -1125,12 +930,10 @@ public class TableroControllers implements Initializable {
         int coordDestX = celdas.getElemento(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().getCeldaObjetivoNormal()).getData().getCoordX();
         int coordDestY = celdas.getElemento(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().getCeldaObjetivoNormal()).getData().getCoordY();
         Individuo ind = celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData();
-        System.out.println("LAAAA XXXX" + celdas.getElemento(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().getCeldaObjetivoNormal()).getData().getCoordX());
-        System.out.println("LAAAA yyyyy" + celdas.getElemento(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().getCeldaObjetivoNormal()).getData().getCoordY());
 
         if (coordDestX == coordOriX && coordDestY == coordOriY) {
             celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().setCeldaObjetivoNormal(celdaAleatoria(celdaOriginal));
-            ///moverNormal(celdaOriginal, individuo);
+
         }
 
         if (coordOriX != coordDestX || coordOriY != coordDestY) {
@@ -1183,47 +986,7 @@ public class TableroControllers implements Initializable {
 
 
     ///////////////Movimiento del avanzado////////////////
-    public void moverAvanzado1(int celdaOriginal, int l) {
-        ListaEnlazada<Integer> recursosDeseables = new ListaEnlazada<>();
-        for (Integer i = 0; i < celdas.getNumeroElementos(); i++) {
-            Integer contador = 0;
-            if (celdas.getElemento(i).getData().recursos != null) {
-                for (Integer j = 0; j < celdas.getElemento(i).getData().recursos.getNumeroElementos(); j++) {
-                    if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() != Color.DARKGREY && celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() != Color.BURLYWOOD) {
-                        contador++;
 
-                    }
-                    if (contador == celdas.getElemento(i).getData().recursos.getNumeroElementos()) {
-                        recursosDeseables.add(i);
-
-                    }
-
-                }
-            }
-        }
-        if (!recursosDeseables.isVacia()) {
-            //Grafo<Integer> grafo1 = creamosGrafo();
-//
-//            Camino<Integer> caminoMinimo= new Camino<>(new ListaSimple<>(), Integer.MAX_VALUE);
-//            for(Integer m=0;m<recursosDeseables.getNumeroElementos();m++){
-//                Vertice<Integer> celdaActual= grafo1.getVertices().getElementoLS(celdaOriginal).getData();
-//                Vertice<Integer> celdaDestino = grafo1.getVertices().getVertice(recursosDeseables.getElemento(m).getData());
-//                Mapa<Vertice<Integer>, Camino<Integer>> caminos = grafo1.dijkstra(celdaActual);
-//                System.out.println("LOOOOOOOsssss "+caminos.getIndice().getNumeroElementos());
-//                Camino<Integer> caminoRecurso= grafo1.caminoMinimo(celdaActual,celdaDestino);
-//
-//                System.out.println("El caminooo "+caminoRecurso.getCamino() + "y el peso "+ caminoRecurso.getCoste());
-//                if(caminoRecurso.getCoste()<=caminoMinimo.getCoste()){
-//                    caminoMinimo=caminoRecurso;
-//                }
-//            }
-//            int posDestino= caminoMinimo.getCamino().getElementoLS(1).getData().getData();
-//            celdas.getElemento(posDestino).getData().individuos.add(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(l).getData()); ///Añadimso el individuo a la celda destino
-//            celdas.getElemento(celdaOriginal).getData().individuos.del(l);///Y lo eliminamos de su celda anterior
-
-
-        }
-    }
 
 
     public void moverAvanzado(int posCelda, int individuo) {
@@ -1238,7 +1001,7 @@ public class TableroControllers implements Initializable {
         if (recursosPositivos.isVacia()) {
             moverNormal(posCelda, individuo);
         } else {
-            ListaEnlazada<Celdas> camino = buscarRecorridoAvanzado(recursosPositivos, posCelda, individuo);
+            ListaEnlazada<Vertice<Celdas>> camino = buscarRecorridoAvanzado(recursosPositivos, posCelda, individuo);
             // ListaEnlazada<Celdas> recorrido= traducirCamino(camino);
             realizarCaminoAvanzado(camino, individuo);
             ;
@@ -1246,53 +1009,69 @@ public class TableroControllers implements Initializable {
 
     }
 
-    public void realizarCaminoAvanzado(ListaEnlazada<Celdas> recorrido, int individuo) {
+    public void realizarCaminoAvanzado(ListaEnlazada<Vertice<Celdas>> recorrido, int individuo) {
         //Para recorrer cada celda por turno
-        celdas.getElemento(recorrido.getElemento(0).getData().getIdentificadorCelda()).getData().individuos.del(individuo);
-        Individuo ind = celdas.getElemento(recorrido.getElemento(0).getData().getIdentificadorCelda()).getData().individuos.getElemento(individuo).getData();
+        Individuo ind = celdas.getElemento(recorrido.getElemento(0).getData().getData().getIdentificadorCelda()).getData().individuos.getElemento(individuo).getData();
 
-        celdas.getElemento(recorrido.getElemento(1).getData().getIdentificadorCelda()).getData().individuos.add(ind);
+        celdas.getElemento(recorrido.getElemento(1).getData().getData().getIdentificadorCelda()).getData().individuos.add(ind);
+        celdas.getElemento(recorrido.getElemento(0).getData().getData().getIdentificadorCelda()).getData().individuos.del(individuo);
+
         recorrido.del(0);
 
 
     }
 
 
-    public ListaEnlazada<Celdas> buscarRecorridoAvanzado(ListaSimple<Integer> recursosPositivos, int celda, int individuo) {
+    public ListaEnlazada<Vertice<Celdas>> buscarRecorridoAvanzado(ListaSimple<Integer> recursosPositivos, int celda, int individuo) {
         Grafo<Celdas> grafoT = crearGrafo();
         System.out.println("Vertices" + grafoT.toPrintV());
         System.out.println("Aristas" + grafoT.toPrintA());
-        ListaSimple<Camino<Celdas>> caminosMinimos = new ListaSimple<>();
 
-        for (Integer i = 0; i < recursosPositivos.getNumeroElementos(); i++) {
-//            Celdas celda1 = new Celdas(celdas.getElemento(celda).getData().individuos,celdas.getElemento(celda).getData().recursos,celdas.getElemento(celda).getData().getIdentificadorCelda(),celdas.getElemento(celda).getData().getCoordX(), celdas.getElemento(celda).getData().getCoordY(),celdas.getElemento(celda).getData().getListaRectangulos());
-//            Celdas celda2 = new Celdas(celdas.getElemento(i).getData().individuos,celdas.getElemento(i).getData().recursos,celdas.getElemento(i).getData().getIdentificadorCelda(),celdas.getElemento(i).getData().getCoordX(), celdas.getElemento(i).getData().getCoordY(),celdas.getElemento(i).getData().getListaRectangulos());
+        Camino<Vertice<Celdas>> camino=null;
+        for (Integer i = 1; i < recursosPositivos.getNumeroElementos(); i++) {
+            try {
+                if (camino == null) {
+                    camino = grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(0).getData());
 
-            caminosMinimos.add(grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData()));
-
-        }
-
-        System.out.println("Numero de caminos que hay " + caminosMinimos.getNumeroElementos());
-
-        //De todos los caminos, queremos el que tenga un menor peso posible
-        Camino<Celdas> camino = new Camino<Celdas>( caminosMinimos.getElementoLS(0).getData().getCamino(), caminosMinimos.getElementoLS(0).getData().getCoste());
-        for (int j = 1; j < caminosMinimos.getNumeroElementos()-1; j++) {
-            if (camino != null) {
-
-                System.out.println("El camino no es nulo");
-                if (camino.getCoste() > caminosMinimos.getElementoLS(j).getData().getCoste()) {
-                    camino.setCamino(caminosMinimos.getElementoLS(j).getData().getCamino());
-                    camino.setCoste(caminosMinimos.getElementoLS(j).getData().getCoste());
                 }
 
+                else if(camino.getCoste()<=grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData()).getCoste()) {
+                    camino = grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData());
+                }
+
+            }catch(Exception e){
+                e.printStackTrace();
             }
+
+
+            if(camino.getCoste()<=grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData()).getCoste()){
+                camino=grafoT.caminoMinimo(celdas.getElemento(celda).getData(), celdas.getElemento(i).getData());
+
+            }
+
         }
 
 
-        ListaEnlazada<Celdas> recorrido = new ListaEnlazada<>();
+        //De todos los caminos, queremos el que tenga un menor peso posible
+//        Camino<Celdas> camino = new Camino<Celdas>( caminosMinimos.getElementoLS(0).getData().getCamino(), caminosMinimos.getElementoLS(0).getData().getCoste());
+//        for (int j = 1; j < caminosMinimos.getNumeroElementos(); j++) {
+//            if (camino != null && caminosMinimos!=null) {
+//
+//                System.out.println("El camino no es nulo");
+//                if (camino.getCoste() > caminosMinimos.getElementoLS(j).getData().getCoste()) {
+//                    camino.setCamino(caminosMinimos.getElementoLS(j).getData().getCamino());
+//                    camino.setCoste(caminosMinimos.getElementoLS(j).getData().getCoste());
+//                }
+//
+//            }
+//        }
+
+
+
+        ListaEnlazada<Vertice<Celdas>> recorrido = new ListaEnlazada<>();
 
         for (Integer i = 0; i < camino.getCamino().getNumeroElementos(); i++) {
-            recorrido.add((Celdas) camino.getCamino().getDato(i));
+            recorrido.add( (Vertice<Celdas>) camino.getCamino().getElementoLS(i).getData());
         }
         return recorrido;
 
@@ -1391,7 +1170,8 @@ public class TableroControllers implements Initializable {
 
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {//es advanced
                     System.out.println("Se mueve el avanzado");
-                    moverAvanzado(i, j);
+                    moverIndividuoBasico(celdas.getElemento(i).getData().individuos.getElemento(j).getData(), celdas.getElemento(i).getData().getIdentificadorCelda(), j);
+
 
                 }
             }
@@ -1428,31 +1208,7 @@ public class TableroControllers implements Initializable {
                         celdas.getElemento(i).getData().individuos.vaciar(); //como sólo se reproducen cuando hay únicamente 2, si no se reproducen se mueren los dos.
 
                     }
-//                }else if(celdaRep.individuos.getNumeroElementos() == 3){ //Hay tres individuos en la celda; vemos si los dos primeros se reproducen o no, si es que sí pueden seguir reproduciéndose, si es que no, pues se mueren y ya
-//                    Individuo ind1 = celdas.getElemento(i).getData().individuos.getElemento(0).getData();
-//                    Individuo ind2 = celdas.getElemento(i).getData().individuos.getElemento(1).getData();
-//                    Individuo ind3 = celdas.getElemento(i).getData().individuos.getElemento(2).getData();
-//                    if (valorarReproduccion(ind1, ind2)) {//Si ha salido que sí, se van a poder seguir reproduciendo (si no, pues se mueren los dos y ya, se termina la reproducción posible)
-//                        ListaEnlazada<Individuo> padres = new ListaEnlazada<>();
-//                        padres.add(ind1);
-//                        padres.add(ind2);
-//                        Individuo hijo = new Individuo(Math.max(ind1.getTipo(), ind2.getTipo()), getIndividuosTotales().getNumeroElementos(), turnosDeVidaProperty().getValue(), turnosJuego, getColorSegunTipo(Math.max(ind1.getTipo(), ind2.getTipo())), Math.max(ind1.getpAparicionSingular(), ind2.getpAparicionSingular()), Math.max(ind1.getpReproCadaIndividuo(), ind2.getpReproCadaIndividuo()), Math.max(ind1.getpClonacionCadaIndividuo(), ind2.getpClonacionCadaIndividuo()), padres);
-//                        celdas.getElemento(i).getData().individuos.add(hijo);
-//                        if (valorarReproduccion(ind2, ind3)) { //Si ha salido que sí, lo intenta el 1 con el 3
-//                            ListaEnlazada<Individuo> padres2 = new ListaEnlazada<>();
-//                            padres.add(ind2);
-//                            padres.add(ind3);
-//                            Individuo hijo2 = new Individuo(Math.max(ind2.getTipo(), ind3.getTipo()), getIndividuosTotales().getNumeroElementos(), turnosDeVidaProperty().getValue(), turnosJuego, getColorSegunTipo(Math.max(ind2.getTipo(), ind3.getTipo())), Math.max(ind2.getpAparicionSingular(), ind3.getpAparicionSingular()), Math.max(ind2.getpReproCadaIndividuo(), ind3.getpReproCadaIndividuo()), Math.max(ind2.getpClonacionCadaIndividuo(), ind3.getpClonacionCadaIndividuo()), padres2);
-//                            celdas.getElemento(i).getData().individuos.add(hijo2);
-//                            if (valorarReproduccion(ind1, ind3)) { //Si ha salido que sí, lo intenta el 1 con el 3
-//                                ListaEnlazada<Individuo> padres3 = new ListaEnlazada<>();
-//                                padres.add(ind1);
-//                                padres.add(ind3);
-//                                Individuo hijo3 = new Individuo(Math.max(ind1.getTipo(), ind3.getTipo()), getIndividuosTotales().getNumeroElementos(), turnosDeVidaProperty().getValue(), turnosJuego, getColorSegunTipo(Math.max(ind1.getTipo(), ind3.getTipo())), Math.max(ind1.getpAparicionSingular(), ind3.getpAparicionSingular()), Math.max(ind1.getpReproCadaIndividuo(), ind3.getpReproCadaIndividuo()), Math.max(ind1.getpClonacionCadaIndividuo(), ind3.getpClonacionCadaIndividuo()), padres3);
-//                                celdas.getElemento(i).getData().individuos.add(hijo3);
-//                            }
-//                        }
-//                    }
+
                 }
             }
         }
@@ -1543,7 +1299,7 @@ public class TableroControllers implements Initializable {
         actualizarTurnoVidaRecursos();
 
 
-        //moverIndividuos();
+        moverIndividuos();
         //mejorasIndividuosRecursos();
 
         reproduccion();
