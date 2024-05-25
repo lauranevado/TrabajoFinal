@@ -1020,22 +1020,6 @@ public class TableroControllers implements Initializable {
         }
 
 
-        //De todos los caminos, queremos el que tenga un menor peso posible
-//        Camino<Celdas> camino = new Camino<Celdas>( caminosMinimos.getElementoLS(0).getData().getCamino(), caminosMinimos.getElementoLS(0).getData().getCoste());
-//        for (int j = 1; j < caminosMinimos.getNumeroElementos(); j++) {
-//            if (camino != null && caminosMinimos!=null) {
-//
-//                System.out.println("El camino no es nulo");
-//                if (camino.getCoste() > caminosMinimos.getElementoLS(j).getData().getCoste()) {
-//                    camino.setCamino(caminosMinimos.getElementoLS(j).getData().getCamino());
-//                    camino.setCoste(caminosMinimos.getElementoLS(j).getData().getCoste());
-//                }
-//
-//            }
-//        }
-
-
-
         ListaEnlazada<Vertice<Celdas>> recorrido = new ListaEnlazada<>();
 
         for (Integer i = 0; i < camino.getCamino().getNumeroElementos(); i++) {
