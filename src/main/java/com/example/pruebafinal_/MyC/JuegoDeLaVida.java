@@ -101,20 +101,5 @@ public class JuegoDeLaVida extends Application {
     public static void main(String[] args) {
 
         launch(args);
-
-///////////////////////////BORRAR YA/////////////////////////////////
-        //DatosCargados datosPartida2= new DatosCargados(turnosDeVidaProperty().getValue(), pRepProperty().getValue(),pMuerteProperty().getValue(), pClonProperty().getValue(),ladoProperty().getValue(), alturaProperty().getValue(),tiempoDeAparicionProperty().getValue(), probabilidadDeAparicionProperty().getValue(),vidaAguaSumaProperty().getValue(),pAgua().getValue(),vidaComidaSumaProperty().getValue(),pComida().getValue(),vidaMontanaRestaProperty().getValue(),pMontana().getValue(),pReproTesoroSumaProperty().getValue(),pTesoro().getValue(),pClonacionBibliotecaSumaProperty().getValue(),pBiblioteca().getValue(),0,pPozo().getValue(), celdas, getNumIndividuosTotales(), getTurnosJuego());
-        //DatosCargados datosPartida12= new DatosCargados(turnosDeVidaProperty().getValue(), pRepProperty().getValue(),pMuerteProperty().getValue(), pClonProperty().getValue(),ladoProperty().getValue(), alturaProperty().getValue(),tiempoDeAparicionProperty().getValue(), probabilidadDeAparicionProperty().getValue(),vidaAguaSumaProperty().getValue(),pAgua().getValue(),vidaComidaSumaProperty().getValue(),pComida().getValue(),vidaMontanaRestaProperty().getValue(),pMontana().getValue(),pReproTesoroSumaProperty().getValue(),pTesoro().getValue(),pClonacionBibliotecaSumaProperty().getValue(),pBiblioteca().getValue(),0,pPozo().getValue(), getNumIndividuosTotales(), getTurnosJuego());
-//        DatosCargados datosPartida1= new DatosCargados(turnosDeVidaProperty().getValue().intValue(), pRepProperty().getValue().intValue(),pMuerteProperty().getValue().intValue(), pClonProperty().getValue().intValue(),ladoProperty().getValue().intValue(), alturaProperty().getValue().intValue(),tiempoDeAparicionProperty().getValue().intValue(), probabilidadDeAparicionProperty().getValue().intValue(),vidaAguaSumaProperty().getValue().intValue(),pAgua().getValue().intValue(),vidaComidaSumaProperty().getValue().intValue(),pComida().getValue().intValue(),vidaMontanaRestaProperty().getValue().intValue(),pMontana().getValue().intValue(),pReproTesoroSumaProperty().getValue().intValue(),pTesoro().getValue().intValue(),pClonacionBibliotecaSumaProperty().getValue().intValue(),pBiblioteca().getValue().intValue(),0,pPozo().getValue().intValue(), celdas, getNumIndividuosTotales(), getTurnosJuego());
-//
-//        String rutaArchivo = "partidas.json";
-//
-//        guardarPartidaEnArchivo(rutaArchivo, datosPartida1);
-//
-//        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo, DatosCargados.class);
-//
-//        if (datosCargadosPartida1 != null){
-//            System.out.println("Partida cargada:(num individuos totales) " + datosCargadosPartida1.getNumIndividuosVivos());
-//        }
     }
 }
