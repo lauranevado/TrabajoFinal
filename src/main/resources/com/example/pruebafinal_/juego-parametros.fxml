@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.intento1.ParametrosControllers">
+<GridPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.MyC.Parametros.ParametrosControllers">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
