@@ -34,10 +34,6 @@ public class JuegoPantallaPpalControllers implements Initializable {
     @FXML
     private Button informacionComoJugarButton;
 
-//    @FXML
-//    ImageView miImagenView;
-//    @FXML
-//    Image miImagen= new Image(getClass().getResourceAsStream("JuegoVida.Portada"));
 
 
 

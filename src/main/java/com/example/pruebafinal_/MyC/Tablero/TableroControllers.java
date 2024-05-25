@@ -46,7 +46,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-import static com.example.pruebafinal_.MyC.JuegoDeLaVida.cargarObjetoDesdeArchivo;
 import static com.example.pruebafinal_.MyC.JuegoDeLaVida.guardarPartidaEnArchivo;
 import static com.example.pruebafinal_.MyC.Parametros.ParametrosProperties.*;
 import static com.example.pruebafinal_.MyC.Tablero.Tablero.*;
@@ -867,19 +866,6 @@ public class TableroControllers implements Initializable {
         }
     }
 
-    public ListaEnlazada<Integer> nuevaCelda(ListaEnlazada<Integer> listaX, ListaEnlazada<Integer> listaY) {
-        ListaEnlazada<Integer> nuevasCoordenadas = new ListaEnlazada<>();
-        Random random = new Random();
-        if (!listaX.isVacia() && !listaY.isVacia()) {
-            int aleatorioX = random.nextInt(listaX.getNumeroElementos());
-            int aleatorioY = random.nextInt(listaY.getNumeroElementos());
-            nuevasCoordenadas.add(listaX.getElemento(aleatorioX).getData());
-            nuevasCoordenadas.add(listaY.getElemento(aleatorioY).getData());
-        }
-
-        return nuevasCoordenadas;
-    }
-
     public ListaEnlazada<Celdas> calcularCoordenadasAdyacentes(int posCelda) {
         ListaEnlazada<Celdas> lista = new ListaEnlazada<>();
         int coordX = celdas.getElemento(posCelda).getData().getCoordX();
@@ -923,9 +909,6 @@ public class TableroControllers implements Initializable {
             }
         }
         return nuevaCelda;
-
-
-
     }
 
     public void moverNormal(int celdaOriginal, int individuo) {
@@ -969,7 +952,6 @@ public class TableroControllers implements Initializable {
                 celdas.getElemento(celdaOriginal).getData().individuos.del(individuo);
             }
         }
-        //updateTablero();
     }
 
 
@@ -990,7 +972,6 @@ public class TableroControllers implements Initializable {
             moverNormal(posCelda, individuo);
         } else {
             ListaEnlazada<Vertice<Celdas>> camino = buscarRecorridoAvanzado(recursosPositivos, posCelda, individuo);
-            // ListaEnlazada<Celdas> recorrido= traducirCamino(camino);
             realizarCaminoAvanzado(camino, individuo);
 
         }
@@ -1065,13 +1046,7 @@ public class TableroControllers implements Initializable {
 
     }
 
-    public ListaEnlazada<Celdas> traducirCamino(Camino camino) {
-        ListaEnlazada<Celdas> recorrido = new ListaEnlazada<>();
-        for (Integer i = 0; i < camino.getCamino().getNumeroElementos(); i++) {
-            recorrido.add((Celdas) camino.getCamino().getElementoLS(i).getData());
-        }
-        return recorrido;
-    }
+
 
     public Grafo<Celdas> crearGrafo() {
         Grafo<Celdas> grafoTablero = new Grafo<>();
@@ -1141,23 +1116,19 @@ public class TableroControllers implements Initializable {
                 if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 0) {//es básico
                     log.info("Se mueve el básico");
                     moverIndividuoBasico(celdas.getElemento(i).getData().individuos.getElemento(j).getData(), celdas.getElemento(i).getData().getIdentificadorCelda(), j);
-                    //updateTablero();
+
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 1) {//es normal
                     log.info("Se mueve el normal");
-
                     moverNormal(i, j);
-                    //updateTablero();
-                    System.out.println("ya se ha movido el normal.");
+
 
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {//es advanced
                     log.info("Se mueve el avanzado");
-                    moverNormal(i, j);
-                    //updateTablero();
+                    moverAvanzado(i, j);
 
                 }
             }
         }
-        //updateTablero();
     }
 
 
@@ -1275,17 +1246,12 @@ public class TableroControllers implements Initializable {
         turnosJuego++;
         actualizarTurnoIndividuos();
         actualizarTurnoVidaRecursos();
-
-
-        //moverIndividuos();
-        //mejorasIndividuosRecursos();
-
+        moverIndividuos();
+        mejorasIndividuosRecursos();
         reproduccion();
-        //clonacion();
-
-
+        clonacion();
         crearRecursos();
-        //eliminacionIndividuos();
+        eliminacionIndividuos();
         updateTablero();
         actualizarPaneLateral();
         System.out.println("Se ha finalizado el turno " + turnosJuego);
