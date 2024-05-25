@@ -74,9 +74,6 @@ public class Individuo {
     }
 
 
-    //Hay que diseñar los movimientos según el tipo de individuo
-    //También hay que diseñar la reproducción
-
     //Getters y setters
     public int getTipo() {
         return tipo;
@@ -110,12 +107,6 @@ public class Individuo {
         this.generacion = generacion;
     }
 
-    //    public Color getColor() {
-//        return color;
-//    }
-//    public void setColor(Color color) {
-//        this.color = color;
-//    }
     public ListaEnlazada<Individuo> getPadres() {
         return padres;
     }

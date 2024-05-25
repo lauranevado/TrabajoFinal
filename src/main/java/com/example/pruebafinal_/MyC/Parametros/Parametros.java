@@ -159,32 +159,6 @@ public class Parametros {
 
 
 
-//    public String getTipoIndividuo() {
-//        return tipoIndividuo;
-//    }
-//
-//    public void setTipoIndividuo(String tipoIndividuo) {
-//        this.tipoIndividuo = tipoIndividuo;
-//    }
-//
-//    public int getIdentificador() {
-//        return identificador;
-//    }
-//
-//    public void setIdentificador(int identificador) {
-//        this.identificador = identificador;
-//    }
-//
-//    public int getGeneracion() {
-//        return generacion;
-//    }
-//
-//    public void setGeneracion(int generacion) {
-//        this.generacion = generacion;
-//    }
-
-
-
     public int getTiempoDeAparicion() { return tiempoDeAparicion;}
 
     public void setTiempoDeAparicion(int tiempoDeAparicion) { this.tiempoDeAparicion = tiempoDeAparicion;}

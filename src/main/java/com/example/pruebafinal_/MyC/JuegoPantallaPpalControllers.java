@@ -53,7 +53,7 @@ public class JuegoPantallaPpalControllers implements Initializable {
 
     @FXML
     protected void onNuevaPartidaButtonClick(){
-        setPartidaCargada(false);
+        //setPartidaCargada(false);
         Stage stageBorrar= (Stage) nuevaPartidaButton.getScene().getWindow();
         stageBorrar.close();
 //        Stage stageInfoBorrar = (Stage) informacionComoJugarButton.getScene().getWindow();
@@ -82,19 +82,20 @@ public class JuegoPantallaPpalControllers implements Initializable {
 //        miImagenView.setImage(miImagen);
 //    }
 
-    Tablero tablero= new Tablero( celdas );
-    TableroProperties tableroCompartir = new TableroProperties(tablero);
+    private Tablero tablero= new Tablero( celdas );
+    private TableroProperties tableroCompartir = new TableroProperties(tablero);
 
 
     @FXML
     protected void onCargarPartidaButtonClick(){ //hacer una pestaña antes en la que elegir la partida que quiere cargar
-
+        setPartidaCargada(true);
         String rutaArchivo = "partidas.json";
 
         DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
 
         if (datosCargadosPartida1 != null) {
             System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
+            System.out.println("Partida cargada:(p rep) " + datosCargadosPartida1.getpRep());
             turnosJuego = datosCargadosPartida1.getTurnosJuego();
             pRepProperty().setValue(datosCargadosPartida1.getpRep());
             pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
@@ -115,7 +116,7 @@ public class JuegoPantallaPpalControllers implements Initializable {
             pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
             muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
             pPozo().setValue(datosCargadosPartida1.getpPozo());
-            celdas=datosCargadosPartida1.getCeldas();
+            celdas=datosCargadosPartida1.celdas;
             //tablero.setCeldas(datosCargadosPartida1.celdas);
 //            ListaEnlazada<Celdas> celdass= new ListaEnlazada<>();
 //            for (Integer i = 0; i < datosCargadosPartida1.celdas.getNumeroElementos(); i++) {
@@ -136,22 +137,26 @@ public class JuegoPantallaPpalControllers implements Initializable {
 
         }
 
+        Tablero tablero= new Tablero( datosCargadosPartida1.celdas );
+        this.tableroCompartir = new TableroProperties(tablero);
 
 
-        Stage stageBorrar= (Stage) cargarPartidaButton.getScene().getWindow();
-        stageBorrar.close();
+//        Stage stageBorrar= (Stage) cargarPartidaButton.getScene().getWindow();
+//        stageBorrar.close();
         System.out.println("Se ha cerrado la pantalla principal");
         log.info("Se ha cerrado la pantalla");
-        cargando.setText("Ha elegido cargar una partida");
+        //cargando.setText("Ha elegido cargar una partida");
         log.info("Cargar una partida");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader=new FXMLLoader(JuegoDeLaVida.class.getResource("/com/example/pruebafinal_/juego-tablero.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load());
+            stage.setMaximized(true);
+            stage.setResizable(false);
             stage.setTitle("El juego de la vida");
             stage.setScene(scene);
             TableroControllers tableroControllers = fxmlLoader.getController();
-            //tableroControllers.loadUserData(this.tableroCompartir);
+            tableroControllers.loadUserData(tableroCompartir);
             tableroControllers.setStage(stage);
             stage.show();
 

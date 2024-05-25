@@ -16,6 +16,7 @@ import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaEnlazada;
 import com.example.pruebafinal_.MyC.Guardado.DatosCargados;
 import com.example.pruebafinal_.MyC.Guardado.GuardarControllers;
 import com.example.pruebafinal_.MyC.Parametros.Parametros;
+import com.example.pruebafinal_.MyC.Parametros.ParametrosControllers;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosPartidaControllers;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosProperties;
 import javafx.animation.Animation;
@@ -146,11 +147,38 @@ public class TableroControllers implements Initializable {
     }
 
     @FXML
-    private void cargarTablero(){
-        //setpartidaCargada false??
+    private void cargarTablero( DatosCargados datosCargados){
+//        String rutaArchivo = "partidas.json";
+//        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
+//        if (datosCargadosPartida1 != null){
+//            System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
+//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+//            pRepProperty().setValue(datosCargadosPartida1.getpRep());
+//            pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
+//            pClonProperty().setValue(datosCargadosPartida1.getpClon());
+//            ladoProperty().setValue(datosCargadosPartida1.getLado());
+//            alturaProperty().setValue(datosCargadosPartida1.getAltura());
+//            tiempoDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+//            probabilidadDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+//            vidaAguaSumaProperty().setValue(datosCargadosPartida1.getVidaAguaSuma());
+//            pAgua().setValue(datosCargadosPartida1.getpAgua());
+//            vidaComidaSumaProperty().setValue(datosCargadosPartida1.getVidaComidaSuma());
+//            pComida().setValue(datosCargadosPartida1.getpComida());
+//            vidaMontanaRestaProperty().setValue(datosCargadosPartida1.getVidaMontanaResta());
+//            pMontana().setValue(datosCargadosPartida1.getpMontana());
+//            pReproTesoroSumaProperty().setValue(datosCargadosPartida1.getpReproTesoroSuma());
+//            pTesoro().setValue(datosCargadosPartida1.getpTesoro());
+//            pClonacionBibliotecaSumaProperty().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+//            pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+//            muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
+//            pPozo().setValue(datosCargadosPartida1.getpPozo());
+//            celdas= datosCargadosPartida1.getCeldas();
+//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+//        }
 
 
 
+        modelo.setOriginal(new Tablero(datosCargados.celdas));
 
         tableroJuego.setVisible(true);
 
@@ -208,42 +236,42 @@ public class TableroControllers implements Initializable {
             }
         }
 
-        String rutaArchivo = "partidas.json";
-
-        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
-
-        if (datosCargadosPartida1 != null){
-            System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
-            turnosJuego= datosCargadosPartida1.getTurnosJuego();
-            pRepProperty().setValue(datosCargadosPartida1.getpRep());
-            pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
-            pClonProperty().setValue(datosCargadosPartida1.getpClon());
-            ladoProperty().setValue(datosCargadosPartida1.getLado());
-            alturaProperty().setValue(datosCargadosPartida1.getAltura());
-            tiempoDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
-            probabilidadDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
-            vidaAguaSumaProperty().setValue(datosCargadosPartida1.getVidaAguaSuma());
-            pAgua().setValue(datosCargadosPartida1.getpAgua());
-            vidaComidaSumaProperty().setValue(datosCargadosPartida1.getVidaComidaSuma());
-            pComida().setValue(datosCargadosPartida1.getpComida());
-            vidaMontanaRestaProperty().setValue(datosCargadosPartida1.getVidaMontanaResta());
-            pMontana().setValue(datosCargadosPartida1.getpMontana());
-            pReproTesoroSumaProperty().setValue(datosCargadosPartida1.getpReproTesoroSuma());
-            pTesoro().setValue(datosCargadosPartida1.getpTesoro());
-            pClonacionBibliotecaSumaProperty().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
-            pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
-            muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
-            pPozo().setValue(datosCargadosPartida1.getpPozo());
-
-            for (Integer i=0; i< celdas.getNumeroElementos(); i++){
-                celdas.getElemento(i).getData().setData(datosCargadosPartida1.celdas.getElemento(i).getData());
-            }
-
-            //celdas= datosCargadosPartida1.getCeldas();
-            turnosJuego= datosCargadosPartida1.getTurnosJuego();
-
-
-        }
+//        String rutaArchivo = "partidas.json";
+//
+//        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
+//
+//        if (datosCargadosPartida1 != null){
+//            System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
+//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+//            pRepProperty().setValue(datosCargadosPartida1.getpRep());
+//            pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
+//            pClonProperty().setValue(datosCargadosPartida1.getpClon());
+//            ladoProperty().setValue(datosCargadosPartida1.getLado());
+//            alturaProperty().setValue(datosCargadosPartida1.getAltura());
+//            tiempoDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+//            probabilidadDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+//            vidaAguaSumaProperty().setValue(datosCargadosPartida1.getVidaAguaSuma());
+//            pAgua().setValue(datosCargadosPartida1.getpAgua());
+//            vidaComidaSumaProperty().setValue(datosCargadosPartida1.getVidaComidaSuma());
+//            pComida().setValue(datosCargadosPartida1.getpComida());
+//            vidaMontanaRestaProperty().setValue(datosCargadosPartida1.getVidaMontanaResta());
+//            pMontana().setValue(datosCargadosPartida1.getpMontana());
+//            pReproTesoroSumaProperty().setValue(datosCargadosPartida1.getpReproTesoroSuma());
+//            pTesoro().setValue(datosCargadosPartida1.getpTesoro());
+//            pClonacionBibliotecaSumaProperty().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+//            pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+//            muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
+//            pPozo().setValue(datosCargadosPartida1.getpPozo());
+//
+//            for (Integer i=0; i< celdas.getNumeroElementos(); i++){
+//                celdas.getElemento(i).getData().setData(datosCargadosPartida1.celdas.getElemento(i).getData());
+//            }
+//
+//            //celdas= datosCargadosPartida1.getCeldas();
+//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+//
+//
+//        }
         //crearIndividuosIniciales();
         actualizarPaneLateral();
 //        crearRecursos();
@@ -1326,11 +1354,27 @@ public class TableroControllers implements Initializable {
     private void bucleDeControlIniciar() {
         if (control == null) {
             control = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-                if (!isPausa()) {
+                if (!isPausa()&&getIndividuosActuales().getNumeroElementos()>1) {
                     turnoPasa();
                 } else {
                     System.out.println("Bucle pausado");
                     control.stop();
+                    if(getIndividuosActuales().getNumeroElementos()==1){
+                        System.out.println("Se ha terminado la partida porque solo quedaba un individuo");
+                        Stage stage = new Stage();
+                        FXMLLoader fxmlLoader=new FXMLLoader(Tablero.class.getResource("/com/example/pruebafinal_/juego-informacion-partida.fxml"));
+                        try {
+                            Scene scene = new Scene(fxmlLoader.load());
+                            stage.setTitle("Información de la partida");
+                            log.info("Información de la partida");
+                            stage.setScene(scene);
+                            stage.setResizable(false);
+//                            ParametrosControllers pParam = fxmlLoader.getController();
+//                            pParam.loadUserData(this.parametrosCompartir);
+//                            pParam.setStage(stage);
+//                            stage.show();
+                        } catch (Exception e) { e.printStackTrace();}
+                    }
                 }
             }));
             control.setCycleCount(Animation.INDEFINITE);
@@ -1359,10 +1403,12 @@ public class TableroControllers implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Inicialización del tablero");
 
-        if(!isPartidaCargada()){
-            crearNuevoTablero();
+        if(isPartidaCargada()==true){
+            cargarTablero(cargarObjetoDesdeArchivo("partidas.json"));
+            //crearNuevoTablero();
         } else {
-            cargarTablero();
+            crearNuevoTablero();
+
         }
 
 //

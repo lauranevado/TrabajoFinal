@@ -22,7 +22,7 @@ public class Tablero {
     public static int turnosJuego;
     public static Grafo<Cola> grafoColaIndividuos= new Grafo<>();
 
-    private static boolean partidaCargada= false;
+    private static boolean partidaCargada;
     protected static int valorAltura = alturaProperty().getValue();
     protected static int  valorLado = ladoProperty().getValue();
 

@@ -73,7 +73,7 @@ public class JuegoDeLaVida extends Application {
 
         try (FileReader reader = new FileReader(rutaArchivo)) {
 
-            ListaEnlazada<Celdas> celdass= new ListaEnlazada<>();
+//            ListaEnlazada<Celdas> celdass= new ListaEnlazada<>();
 //            for (Integer i = 0; i < datosCargadosPartida1.celdas.getNumeroElementos(); i++) {
 //                celdass.add(new Celdas(datosCargadosPartida1.celdas.getElemento(i).getData().getIndividuos(), datosCargadosPartida1.celdas.getElemento(i).getData().getRecursos(), datosCargadosPartida1.celdas.getElemento(i).getData().getIdentificadorCelda(), datosCargadosPartida1.celdas.getElemento(i).getData().getCoordX(), datosCargadosPartida1.celdas.getElemento(i).getData().getCoordY(), datosCargadosPartida1.celdas.getElemento(i).getData().getListaRectangulos()));
 //                //celdas.getElemento(i).getData().setData(datosCargadosPartida1.celdas.getElemento(i).getData());

@@ -116,15 +116,15 @@ public class ListaEnlazada<TipoDeDato> {
         return actual;
     }
 
-    @Override
-    public String toString() {
-        Integer contador=0;
-        String resultado="";
-        while(contador<=getNumeroElementos()-1){
-            resultado+= getElemento(contador).getData()+" ";
-            contador++;
-        }
-        return "["+resultado+"]";
-    }
+//    @Override
+//    public String toString() {
+//        Integer contador=0;
+//        String resultado="";
+//        while(contador<=getNumeroElementos()-1){
+//            resultado+= getElemento(contador).getData()+" ";
+//            contador++;
+//        }
+//        return "["+resultado+"]";
+//    }
 }
 
