@@ -1362,11 +1362,11 @@ public class TableroControllers implements Initializable {
                 if (!isPausa()&&getIndividuosActuales().getNumeroElementos()!=1) {
                     turnoPasa();
                 } else {
-                    System.out.println("Bucle pausado");
+                    log.info("Bucle pausado");
                     control.stop();
                     if(getIndividuosActuales().getNumeroElementos()==1){
                         onPauseButtonClick();
-                        System.out.println("Se ha terminado la partida porque solo quedaba un individuo");
+                       log.info("Se ha terminado la partida porque solo quedaba un individuo");
                         Stage stage = new Stage();
                         FXMLLoader fxmlLoader=new FXMLLoader(Tablero.class.getResource("/com/example/pruebafinal_/juego-informacion-partida.fxml"));
                         try {
@@ -1421,71 +1421,6 @@ public class TableroControllers implements Initializable {
             crearNuevoTablero();
 
         }
-
-//
-//        tableroJuego.setVisible(true);
-//
-//        //Vaciamos el gridpane
-//        informacionGridPane.getChildren().clear();
-//        informacionGridPane.setAlignment(Pos.CENTER);
-//        informacionGridPane.setMinSize(400, 700);
-//
-//
-//        ///Vaciamos el gridPane en el que vamos a crear los el tablero de botones
-//        tableroJuego.getChildren().clear();
-//        tableroJuego.setPadding(new Insets(valorAltura.getValue() * valorLado.getValue()));
-//        tableroJuego.setGridLinesVisible(true);
-//        tableroJuego.setHgap(0);
-//        tableroJuego.setVgap(0);
-//        tableroJuego.setMinSize(800, 800);
-//        tableroJuego.setAlignment(Pos.CENTER);
-//        Integer ident = 0;
-//        for (Integer i = 0; i < valorAltura.getValue(); i++) {
-//            for (Integer j = 0; j < valorLado.getValue(); j++) {
-//                Button celdaButton = new Button();
-//                celdaButton.setId(String.valueOf(ident));
-//                GridPane.setRowIndex(celdaButton, i);
-//                GridPane.setColumnIndex(celdaButton, j);
-//                celdaButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-//                celdaButton.setStyle("-fx-background-color: #cef18c");
-//                celdaButton.setOnAction((ActionEvent event) -> {
-//                    System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
-//                    onCeldaButtonClick(celdaButton, event);
-//                });
-//
-//                GridPane fondoCelda = new GridPane();
-//                fondoCelda.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-//                ListaEnlazada<StackPane> listaCuadraditos = new ListaEnlazada<>();
-//                for (Integer p1 = 0; p1 < 3; p1++) {
-//                    for (Integer p2 = 0; p2 < 2; p2++) {
-//                        StackPane cuadraditoanadir = createRectangle(Color.LIGHTGRAY);
-//                        cuadraditoanadir.resize(Double.MAX_VALUE, Double.MAX_VALUE);
-//                        listaCuadraditos.add(cuadraditoanadir);
-//                        fondoCelda.add(cuadraditoanadir, p1, p2);
-//                    }
-//                }
-//                celdaButton.setGraphic(fondoCelda);
-//
-//                tableroJuego.getChildren().add(celdaButton);
-//                GridPane.setHgrow(celdaButton, Priority.ALWAYS);
-//                GridPane.setVgrow(celdaButton, Priority.ALWAYS);
-//                tableroJuego.setDisable(false);
-//
-//                ListaEnlazada<Individuo> inds = new ListaEnlazada<>();
-//                ListaEnlazada<Recurso> recs = new ListaEnlazada<>();
-//                Celdas cel = new Celdas(inds, recs, ident, i, j, listaCuadraditos);
-//                celdas.add(cel);
-//                ident++;
-//            }
-//        }
-//        crearIndividuosIniciales();
-//        actualizarPaneLateral();
-//        crearRecursos();
-//        updateTablero();
-//
-//        //añadir();
-
-
 
     }
 }
