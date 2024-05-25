@@ -433,7 +433,7 @@ public class TableroControllers implements Initializable {
         log.info("Se actualizaró el panel lateral");
 
         VBox cajaInformacion = new VBox(10); //10 es el espacio entre cada caja que haya dentro
-        cajaInformacion.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        cajaInformacion.setBackground(new Background(new BackgroundFill(Color.BEIGE, CornerRadii.EMPTY, Insets.EMPTY)));
         cajaInformacion.setPadding(new Insets(10));
         cajaInformacion.setAlignment(Pos.CENTER);
 

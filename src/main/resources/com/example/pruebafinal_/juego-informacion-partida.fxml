@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaControllers">
    <children>
+      <ImageView fitHeight="945.0" fitWidth="1435.0" layoutX="-418.0" layoutY="-185.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Imagenes/Verde.jpg" />
+         </image>
+      </ImageView>
       <Label layoutX="132.0" layoutY="41.0" text="INFORMACIÓN SOBRE LA PARTIDA">
          <font>
             <Font name="Century Schoolbook" size="18.0" />
@@ -32,7 +38,7 @@
             <Font name="Century Schoolbook" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="53.0" layoutY="181.0" text="Número de clonaciones:">
+      <Label layoutX="55.0" layoutY="181.0" text="Número de clonaciones:">
          <font>
             <Font name="Century Schoolbook" size="14.0" />
          </font>
