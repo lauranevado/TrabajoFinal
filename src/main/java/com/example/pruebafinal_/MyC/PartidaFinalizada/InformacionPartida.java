@@ -8,8 +8,12 @@ import static com.example.pruebafinal_.MyC.Tablero.Tablero.grafoColaIndividuos;
 
 import com.example.pruebafinal_.MyC.Estructuras.arbol.ArbolBinarioDeBusqueda;
 import com.example.pruebafinal_.MyC.Datos.Individuo;
+import com.example.pruebafinal_.MyC.Guardado.DatosCargados;
+import com.example.pruebafinal_.MyC.Tablero.Tablero;
 
 public class InformacionPartida {
+    private int turnosJugados;
+    private int individuosVivos;
     private int masLongevo;  ///Mas turnos ha vivido
     private int numMutaciones;
     private int numReproducciones;
@@ -18,7 +22,18 @@ public class InformacionPartida {
     private int individuoMasAgua;
 
 
-
+    public InformacionPartida(DatosCargados datosCargados) {
+        this.turnosJugados= datosCargados.turnosJuego;
+        this.individuosVivos= datosCargados.numIndividuosVivos;
+        this.numMutaciones= getNumMutaciones();
+        this.numReproducciones= getNumReproducciones();
+    }
+    public InformacionPartida (){
+        this.turnosJugados= Tablero.getTurnosJuego();
+        this.individuosVivos= Tablero.getIndividuosActuales().getNumeroElementos();
+        this.numMutaciones= getNumMutaciones();
+        this.numReproducciones= getNumReproducciones();
+    }
 
     public int getLongevo(){
         int longevo=0;
@@ -38,7 +53,7 @@ public class InformacionPartida {
         int contador=0;
         for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
             Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
-            while (cola!=null){
+            while (!cola.isVacia()){
                 if(cola.poll().getData()=="clonado"){
                     contador++;
 
@@ -185,6 +200,22 @@ public class InformacionPartida {
 
         return arbolGenealogico;
 
+    }
+
+    public int getTurnosJugados() {
+        return turnosJugados;
+    }
+
+    public void setTurnosJugados(int turnosJugados) {
+        this.turnosJugados = turnosJugados;
+    }
+
+    public int getIndividuosVivos() {
+        return individuosVivos;
+    }
+
+    public void setIndividuosVivos(int individuosVivos) {
+        this.individuosVivos = individuosVivos;
     }
 }
 

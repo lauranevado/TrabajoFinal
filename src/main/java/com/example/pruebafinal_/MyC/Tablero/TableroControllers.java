@@ -15,10 +15,12 @@ import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaSimple;
 import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaEnlazada;
 import com.example.pruebafinal_.MyC.Guardado.DatosCargados;
 import com.example.pruebafinal_.MyC.Guardado.GuardarControllers;
+import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartida;
+import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaControllers;
 import com.example.pruebafinal_.MyC.Parametros.Parametros;
-import com.example.pruebafinal_.MyC.Parametros.ParametrosControllers;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosPartidaControllers;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosProperties;
+//import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaProperties;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -81,7 +83,9 @@ public class TableroControllers implements Initializable {
     private Parametros parametros = new Parametros(turnosDeVidaProperty().getValue(), numIndividuosInicialProperty().getValue(), pRepProperty().getValue(), pMuerteProperty().getValue(), pClonProperty().getValue(), pBasicoProperty().getValue(), pNormalProperty().getValue(), pAvanzadoProperty().getValue(), ladoProperty().getValue(), alturaProperty().getValue(), tiempoDeAparicionProperty().getValue(), probabilidadDeAparicionProperty().getValue(), vidaAguaSumaProperty().getValue(), pAgua().getValue(), vidaComidaSumaProperty().getValue(), pComida().getValue(), vidaMontanaRestaProperty().getValue(), pMontana().getValue(), pReproTesoroSumaProperty().getValue(), pTesoro().getValue(), pClonacionBibliotecaSumaProperty().getValue(), pBiblioteca().getValue(), 0, pPozo().getValue());
     private ParametrosProperties parametrosCompartir = new ParametrosProperties(parametros);
 
+    private InformacionPartida informacionPartida = new InformacionPartida();
 
+    //private InformacionPartidaProperties informacionPartidaProperties = new InformacionPartidaProperties(informacionPartida);
 
 
     @FXML
@@ -111,6 +115,7 @@ public class TableroControllers implements Initializable {
                 GridPane.setColumnIndex(celdaButton, j);
                 celdaButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 celdaButton.setStyle("-fx-background-color: #cef18c");
+                //celdaButton.setOpacity(1.0);
                 celdaButton.setOnAction((ActionEvent event) -> {
                     System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
                     onCeldaButtonClick(celdaButton, event);
@@ -698,7 +703,7 @@ public class TableroControllers implements Initializable {
             log.info("Se ha detenido el juego");
             guardarStage.setScene(scene);
             GuardarControllers guardarControllers = fxmlLoader.getController();
-            guardarControllers.loadGuardarData(new DatosCargados(turnosDeVidaProperty().getValue().intValue(), pRepProperty().getValue().intValue(),pMuerteProperty().getValue().intValue(), pClonProperty().getValue().intValue(),ladoProperty().getValue().intValue(), alturaProperty().getValue().intValue(),tiempoDeAparicionProperty().getValue().intValue(), probabilidadDeAparicionProperty().getValue().intValue(),vidaAguaSumaProperty().getValue().intValue(),pAgua().getValue().intValue(),vidaComidaSumaProperty().getValue().intValue(),pComida().getValue().intValue(),vidaMontanaRestaProperty().getValue().intValue(),pMontana().getValue().intValue(),pReproTesoroSumaProperty().getValue().intValue(),pTesoro().getValue().intValue(),pClonacionBibliotecaSumaProperty().getValue().intValue(),pBiblioteca().getValue().intValue(),0,pPozo().getValue().intValue(), celdas, getNumIndividuosTotales(), getTurnosJuego()));
+            guardarControllers.loadGuardarData(new DatosCargados(turnosDeVidaProperty().getValue().intValue(), pRepProperty().getValue().intValue(),pMuerteProperty().getValue().intValue(), pClonProperty().getValue().intValue(),ladoProperty().getValue().intValue(), alturaProperty().getValue().intValue(),tiempoDeAparicionProperty().getValue().intValue(), probabilidadDeAparicionProperty().getValue().intValue(),vidaAguaSumaProperty().getValue().intValue(),pAgua().getValue().intValue(),vidaComidaSumaProperty().getValue().intValue(),pComida().getValue().intValue(),vidaMontanaRestaProperty().getValue().intValue(),pMontana().getValue().intValue(),pReproTesoroSumaProperty().getValue().intValue(),pTesoro().getValue().intValue(),pClonacionBibliotecaSumaProperty().getValue().intValue(),pBiblioteca().getValue().intValue(),0,pPozo().getValue().intValue(), celdas, getNumIndividuosTotales(), getTurnosJuego()), this.scene);
             guardarStage.initModality(Modality.APPLICATION_MODAL);
             Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
             guardarStage.initOwner(stageAnterior);
@@ -1336,7 +1341,7 @@ public class TableroControllers implements Initializable {
         actualizarTurnoVidaRecursos();
 
 
-        moverIndividuos();
+        //moverIndividuos();
         //mejorasIndividuosRecursos();
 
         reproduccion();
@@ -1354,25 +1359,31 @@ public class TableroControllers implements Initializable {
     private void bucleDeControlIniciar() {
         if (control == null) {
             control = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-                if (!isPausa()&&getIndividuosActuales().getNumeroElementos()>1) {
+                if (!isPausa()&&getIndividuosActuales().getNumeroElementos()!=1) {
                     turnoPasa();
                 } else {
                     System.out.println("Bucle pausado");
                     control.stop();
                     if(getIndividuosActuales().getNumeroElementos()==1){
+                        onPauseButtonClick();
                         System.out.println("Se ha terminado la partida porque solo quedaba un individuo");
                         Stage stage = new Stage();
                         FXMLLoader fxmlLoader=new FXMLLoader(Tablero.class.getResource("/com/example/pruebafinal_/juego-informacion-partida.fxml"));
                         try {
+//                            Stage stageInfoBorrar = (Stage) informacionComoJugarButton.getScene().getWindow();
+//                            stageInfoBorrar.close(); //para borrar la que yo quiera
                             Scene scene = new Scene(fxmlLoader.load());
                             stage.setTitle("Información de la partida");
                             log.info("Información de la partida");
                             stage.setScene(scene);
                             stage.setResizable(false);
-//                            ParametrosControllers pParam = fxmlLoader.getController();
-//                            pParam.loadUserData(this.parametrosCompartir);
-//                            pParam.setStage(stage);
-//                            stage.show();
+                            stage.initModality(Modality.APPLICATION_MODAL);
+                            Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                            stage.initOwner(stageAnterior);
+                            InformacionPartidaControllers infoController = fxmlLoader.getController();
+                            infoController.loadInformacionPartidaData(this.informacionPartida);
+                            infoController.setStage(stage);
+                            stage.showAndWait();
                         } catch (Exception e) { e.printStackTrace();}
                     }
                 }

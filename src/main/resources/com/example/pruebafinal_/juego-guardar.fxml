@@ -12,12 +12,12 @@
             <Font name="Century Schoolbook" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="121.0" layoutY="230.0" mnemonicParsing="false" onAction="#onGuardarButtonClick" prefHeight="58.0" prefWidth="154.0" text="Guardar y salir">
+      <Button fx:id="guardarButton" layoutX="121.0" layoutY="230.0" mnemonicParsing="false" onAction="#onGuardarButtonClick" prefHeight="58.0" prefWidth="154.0" text="Guardar y salir">
          <font>
             <Font name="Century Schoolbook" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="324.0" layoutY="230.0" mnemonicParsing="false" onAction="#onSalirButtonClick" prefHeight="58.0" prefWidth="154.0" text="Salir sin guardar">
+      <Button fx:id="salirButton" layoutX="324.0" layoutY="230.0" mnemonicParsing="false" onAction="#onSalirButtonClick" prefHeight="58.0" prefWidth="154.0" text="Salir sin guardar">
          <font>
             <Font name="Century Schoolbook" size="14.0" />
          </font>

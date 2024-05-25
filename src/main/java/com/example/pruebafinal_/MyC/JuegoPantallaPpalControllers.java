@@ -53,7 +53,6 @@ public class JuegoPantallaPpalControllers implements Initializable {
 
     @FXML
     protected void onNuevaPartidaButtonClick(){
-        //setPartidaCargada(false);
         Stage stageBorrar= (Stage) nuevaPartidaButton.getScene().getWindow();
         stageBorrar.close();
 //        Stage stageInfoBorrar = (Stage) informacionComoJugarButton.getScene().getWindow();
