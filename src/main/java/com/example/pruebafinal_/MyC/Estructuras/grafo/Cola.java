@@ -27,7 +27,7 @@ public class Cola<tipoDeDato> {
 
 
     public ElementoLDE<tipoDeDato> poll(){
-        ElementoLDE eliminar= ultimo;
+        ElementoLDE<tipoDeDato> eliminar= ultimo;
         if(isVacia()){
             return null;
         }

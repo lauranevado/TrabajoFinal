@@ -1,5 +1,6 @@
 package com.example.pruebafinal_.MyC.Guardado;
 
+import com.example.pruebafinal_.MyC.JuegoDeLaVida;
 import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaControllers;
 import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartida;
 //import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaProperties;
@@ -9,6 +10,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,13 +30,14 @@ public class GuardarControllers implements Initializable {
 
     @FXML
     private Button salirButton, guardarButton;
+    private  final Logger log= LogManager.getLogger(JuegoDeLaVida.class);
 
 //meter un logger
 
     @FXML
     private void onSalirButtonClick() {
 //        scene.close();
-        System.out.println("Se van a enseñar los datos de la partida.");
+        log.info("Se van a enseñar los datos de la partida.");
 //
 //        //System.out.println("Se ha pulsado un botón; enseñando información");
         Stage guardarStage = new Stage();
@@ -46,7 +50,7 @@ public class GuardarControllers implements Initializable {
             guardarStage.setTitle("Información de la partida");
             guardarStage.setScene(scene);
             InformacionPartidaControllers infoControllers = fxmlLoader.getController();
-            infoControllers.loadInformacionPartidaData(new InformacionPartida(modelo)); /////////
+            infoControllers.loadInformacionPartidaData(new InformacionPartida(turnosJuego, getIndividuosActuales().getNumeroElementos(),getIndividuosActuales().getElemento(0).getData())); /////////
 //            guardarStage.initModality(Modality.APPLICATION_MODAL);
 //            Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
 //            guardarStage.initOwner(stageAnterior);

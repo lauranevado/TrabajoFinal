@@ -83,7 +83,7 @@ public class TableroControllers implements Initializable {
     private Parametros parametros = new Parametros(turnosDeVidaProperty().getValue(), numIndividuosInicialProperty().getValue(), pRepProperty().getValue(), pMuerteProperty().getValue(), pClonProperty().getValue(), pBasicoProperty().getValue(), pNormalProperty().getValue(), pAvanzadoProperty().getValue(), ladoProperty().getValue(), alturaProperty().getValue(), tiempoDeAparicionProperty().getValue(), probabilidadDeAparicionProperty().getValue(), vidaAguaSumaProperty().getValue(), pAgua().getValue(), vidaComidaSumaProperty().getValue(), pComida().getValue(), vidaMontanaRestaProperty().getValue(), pMontana().getValue(), pReproTesoroSumaProperty().getValue(), pTesoro().getValue(), pClonacionBibliotecaSumaProperty().getValue(), pBiblioteca().getValue(), 0, pPozo().getValue());
     private ParametrosProperties parametrosCompartir = new ParametrosProperties(parametros);
 
-    private InformacionPartida informacionPartida = new InformacionPartida();
+
 
     //private InformacionPartidaProperties informacionPartidaProperties = new InformacionPartidaProperties(informacionPartida);
 
@@ -293,20 +293,23 @@ public class TableroControllers implements Initializable {
             int randomTipoIndividuo = random.nextInt(3);
             if(celdas.getElemento(i).getData().individuos.getNumeroElementos() <= 3 ) {
                 if (randomTipoIndividuo == 0 ) {
-                    Individuo individuoBasico = new Individuo(0, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), new Cola<>());
+                    Individuo individuoBasico = new Individuo(0, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), new ListaEnlazada<Individuo>() ,new Cola<>());
+                    grafoColaIndividuos.addVertices(new Vertice<>(individuoBasico.colaIndividuo));
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
                     log.info("Se creó un nuevo individuo ");
 
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoBasico);
                 } else if (randomTipoIndividuo == 1 ) {
-                    Individuo individuoNormal = new Individuo(1, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), celdaAleatoria(i), new Cola<>());
+                    Individuo individuoNormal = new Individuo(1, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), new ListaEnlazada<Individuo>(), celdaAleatoria(i), new Cola<>());
+                    grafoColaIndividuos.addVertices(new Vertice<>(individuoNormal.colaIndividuo));
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoNormal);
                     log.info("Se creó un nuevo individuo ");
                 } else if (randomTipoIndividuo == 2 ) {
-                    Individuo individuoAvanzado = new Individuo(2, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new Cola<>());
+                    Individuo individuoAvanzado = new Individuo(2, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new ListaEnlazada<Individuo>(), new Cola<>());
+                    grafoColaIndividuos.addVertices(new Vertice<>(individuoAvanzado.colaIndividuo));
                     numIndividuosTotales++;
                     int randomCasilla = random.nextInt(valorAltura * valorLado);
                     celdas.getElemento(randomCasilla).getData().getIndividuos().add(individuoAvanzado);
@@ -763,7 +766,8 @@ public class TableroControllers implements Initializable {
             for (Integer j = 0; j < celdas.getElemento(i).getData().individuos.getNumeroElementos(); j++) {
                 Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(j).getData();
                 ind.setTurnosDeVida(ind.getTurnosDeVida() - 1);
-                ind.colaIndividuo.add(ind.getTurnosDeVida());
+
+
                 if (ind.getpReproCadaIndividuo() > 0) {
                     ind.setpReproCadaIndividuo(ind.getpReproCadaIndividuo() - 10);
                 }
@@ -776,11 +780,11 @@ public class TableroControllers implements Initializable {
                     celdas.getElemento(i).getData().individuos.getElemento(j).getData().colaIndividuo.add("Se le ha restado un turno de vida al indviduo ");
                     if (ind.getTurnosDeVida() == 0) {
                         Individuo ind2 = celdas.getElemento(i).getData().individuos.getElemento(j).getData();
-                        ind2.colaIndividuo.add("Se ha muerto el individuo ");
-                        ind2.colaIndividuo.add(turnosJuego - ind2.getGeneracion());
+                        grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("Se ha muerto el individuo ");
 
-                        Vertice v = new Vertice<>(celdas.getElemento(i).getData().individuos.getElemento(j).getData().colaIndividuo);  //Añadimso la cola en un vertice para así poder
-                        grafoColaIndividuos.addVertices(v);
+
+//                        Vertice v = new Vertice<>(celdas.getElemento(i).getData().individuos.getElemento(j).getData().colaIndividuo);  //Añadimso la cola en un vertice para así poder
+//                        grafoColaIndividuos.addVertices(v);
                         celdas.getElemento(i).getData().individuos.del(j);
                         j--;
                     }
@@ -816,7 +820,7 @@ public class TableroControllers implements Initializable {
                             ind.setTurnosDeVida(ind.getTurnosDeVida() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
                             // System.out.println("Se sumaron "+vidaAguaSumaProperty().getValue()+"por el agua ");
 
-                            ind.colaIndividuo.add("agua");
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("agua");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.TOMATO) {
@@ -824,8 +828,8 @@ public class TableroControllers implements Initializable {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
                             ind.setTurnosDeVida(ind.getTurnosDeVida() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
                             //  System.out.println("Se sumaron "+vidaAguaSumaProperty().getValue()+" vidas por la comida ");
-                            ind.colaIndividuo.add(ind.getTurnosDeVida());
-                            ind.colaIndividuo.add("comida");
+
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("comida");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.BURLYWOOD) {
@@ -834,7 +838,7 @@ public class TableroControllers implements Initializable {
                             ind.setTurnosDeVida(ind.getTurnosDeVida() - celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
 
                             ind.colaIndividuo.add(ind.getTurnosDeVida());
-                            ind.colaIndividuo.add("montaña");
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("montaña");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.YELLOW) {
@@ -843,7 +847,7 @@ public class TableroControllers implements Initializable {
                             ind.setpReproCadaIndividuo(ind.getpReproCadaIndividuo() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
 
                             ind.colaIndividuo.add(ind.getTurnosDeVida());
-                            ind.colaIndividuo.add("tesoro");
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("tesoro");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.HOTPINK) {
@@ -853,14 +857,14 @@ public class TableroControllers implements Initializable {
                             ind.setpClonacionCadaIndividuo(ind.getpClonacionCadaIndividuo() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
                             // System.out.println("Se sumaron "+pClonacionBibliotecaSumaProperty().getValue()+" vidas y aumentó en un "+pClonacionBibliotecaSumaProperty().getValue());
 
-                            ind.colaIndividuo.add(ind.getTurnosDeVida());
-                            ind.colaIndividuo.add("biblioteca");
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add(ind.getTurnosDeVida());
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("biblioteca");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.DARKGREY) {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
-                            ind.colaIndividuo.add("pozo");
+                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("pozo");
                         }
                         celdas.getElemento(i).getData().individuos.vaciar();
                     }
@@ -1362,6 +1366,7 @@ public class TableroControllers implements Initializable {
                 if (!isPausa()&&getIndividuosActuales().getNumeroElementos()!=1) {
                     turnoPasa();
                 } else {
+                    InformacionPartida informacionPartida = new InformacionPartida( turnosJuego,getIndividuosActuales().getNumeroElementos(), getIndividuosActuales().getElemento(0).getData());
                     log.info("Bucle pausado");
                     control.stop();
                     if(getIndividuosActuales().getNumeroElementos()==1){
@@ -1377,13 +1382,13 @@ public class TableroControllers implements Initializable {
                             log.info("Información de la partida");
                             stage.setScene(scene);
                             stage.setResizable(false);
-                            stage.initModality(Modality.APPLICATION_MODAL);
-                            Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
-                            stage.initOwner(stageAnterior);
+//                            stage.initModality(Modality.APPLICATION_MODAL);
+//                            Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
+//                            stage.initOwner(stageAnterior);
                             InformacionPartidaControllers infoController = fxmlLoader.getController();
-                            infoController.loadInformacionPartidaData(this.informacionPartida);
+                            infoController.loadInformacionPartidaData(informacionPartida);
                             infoController.setStage(stage);
-                            stage.showAndWait();
+                            stage.show();
                         } catch (Exception e) { e.printStackTrace();}
                     }
                 }

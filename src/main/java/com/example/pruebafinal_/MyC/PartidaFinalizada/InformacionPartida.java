@@ -8,6 +8,7 @@ import static com.example.pruebafinal_.MyC.Tablero.Tablero.grafoColaIndividuos;
 
 import com.example.pruebafinal_.MyC.Estructuras.arbol.ArbolBinarioDeBusqueda;
 import com.example.pruebafinal_.MyC.Datos.Individuo;
+import com.example.pruebafinal_.MyC.Estructuras.grafo.Grafo;
 import com.example.pruebafinal_.MyC.Guardado.DatosCargados;
 import com.example.pruebafinal_.MyC.Tablero.Tablero;
 
@@ -21,38 +22,58 @@ public class InformacionPartida {
     private int individuoMasClonaciones;
     private int individuoMasAgua;
 
+    private Individuo idSuperviviente;
 
-    public InformacionPartida(DatosCargados datosCargados) {
-        this.turnosJugados= datosCargados.turnosJuego;
-        this.individuosVivos= datosCargados.numIndividuosVivos;
+
+//    public InformacionPartida(int turnosJugados, int individuosVivos, Grafo hjgh) {
+//        this.turnosJugados= turnosJugados;
+//        this.individuosVivos= individuosVivos;
+//        this.numMutaciones= getNumMutaciones();
+//        this.numReproducciones= getNumReproducciones();
+//    }
+
+    public InformacionPartida(int turnosJugados, int individuosVivos,Individuo idSuperviviente) {
+        this.turnosJugados = turnosJugados;
+        this.individuosVivos = individuosVivos;
+        this.masLongevo = getLongevo();
         this.numMutaciones= getNumMutaciones();
         this.numReproducciones= getNumReproducciones();
-    }
-    public InformacionPartida (){
-        this.turnosJugados= Tablero.getTurnosJuego();
-        this.individuosVivos= Tablero.getIndividuosActuales().getNumeroElementos();
-        this.numMutaciones= getNumMutaciones();
-        this.numReproducciones= getNumReproducciones();
+        this.individuoMasReproducciones = getIndividuoMasReproducciones();
+        this.individuoMasClonaciones = getIndividuoMasClonaciones();
+        this.individuoMasAgua = getIndividuoMasAgua();
+        this.arbolSuperviviente = getArbolSuperviviente(idSuperviviente);
     }
 
     public int getLongevo(){
-        int longevo=0;
+
+        int id=0;
         int individuo=0;
         for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            int ind= (int) grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData().poll().getData();
-            if ( ind>=longevo) {
-                individuo=i;
-                longevo=ind;
-            }
+            int contador=0;
+            Cola ind= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
+            while (!ind.isVacia()){
+                if( ind.poll().getData()!=null){
+                    contador++;
+                }
 
+
+            }
+            if(individuo==0) {
+                individuo = contador;
+            }
+            else if(contador>individuo){
+                individuo=contador;
+                id=i;
+            }
         }
-        return individuo;   //Retornamos simepre el identificador
+        return id;   //Retornamos simepre el identificador
     }
 
     public int getNumMutaciones(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         int contador=0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++){
+            Cola cola= grafoAnalizar.getVertices().getElementoLS(i).getData().getData();
             while (!cola.isVacia()){
                 if(cola.poll().getData()=="clonado"){
                     contador++;
@@ -68,10 +89,11 @@ public class InformacionPartida {
 
 
     public int getNumReproducciones(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         int contador=0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
-            while (cola!=null){
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++){
+            Cola cola= grafoAnalizar.getVertices().getElementoLS(i).getData().getData();
+            while (!cola.isVacia()){
                 if(cola.poll().getData()=="Se ha reproducido"){
                     contador++;
 
@@ -86,12 +108,13 @@ public class InformacionPartida {
     }
 
     public int getIndividuoMasReproducciones(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         int masReproducciones=0;
         int individuo = 0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++){
+            Cola cola= grafoAnalizar.getVertices().getElementoLS(i).getData().getData();
             int otro=0;
-            while (cola!=null){
+            while (!cola.isVacia()){
                 if(cola.poll().getData()=="Se ha reproducido"){
                     otro++;
 
@@ -108,12 +131,13 @@ public class InformacionPartida {
     }
 
     public int getIndividuoMasClonaciones(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         int masClonaciones=0;
         int individuo=0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++){
+            Cola cola= grafoAnalizar.getVertices().getElementoLS(i).getData().getData();
             int otro=0;
-            while (cola!=null){
+            while (!cola.isVacia()){
                 if(cola.poll().getData()=="clonado"){
                     otro++;
 
@@ -130,12 +154,13 @@ public class InformacionPartida {
     }
 
     public int getIndividuoMasAgua(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         int masAgua=0;
         int individuo=0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++){
-            Cola cola= grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData();
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++){
+            Cola cola= grafoAnalizar.getVertices().getElementoLS(i).getData().getData();
             int otro=0;
-            while (cola!=null){
+            while (!cola.isVacia()){
                 if(cola.poll().getData()=="agua"){
                     otro++;
 
@@ -154,13 +179,14 @@ public class InformacionPartida {
 
 
     public ListaEnlazada<Integer> getMaximoVida(){
+        Grafo<Cola> grafoAnalizar= grafoColaIndividuos;
         ListaEnlazada<Integer> max= new ListaEnlazada<>();
         int maxVida=0;
         int individuo=0;
-        for(Integer i=0;i<grafoColaIndividuos.getVertices().getNumeroElementos();i++) {
-            grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData().poll().getData();
-            int ind = (int) grafoColaIndividuos.getVertices().getElementoLS(i).getData().getData().poll().getData();
-            while (grafoColaIndividuos.getVertices().getElementoLS(i) != null) {
+        for(Integer i=0;i<grafoAnalizar.getVertices().getNumeroElementos();i++) {
+            grafoAnalizar.getVertices().getElementoLS(i).getData().getData().poll().getData();
+            int ind = (int) grafoAnalizar.getVertices().getElementoLS(i).getData().getData().poll().getData();
+            while (grafoAnalizar.getVertices().getElementoLS(i) != null) {
                 if (ind >= maxVida) {
                     individuo = i;
                     maxVida = ind;
@@ -186,18 +212,27 @@ public class InformacionPartida {
 
     private ArbolBinarioDeBusqueda<Individuo> arbolSuperviviente;
 
-    private void addPadres(Individuo indivAddPadres, ArbolBinarioDeBusqueda<Individuo> arbolGenealogico){
-        for (Integer i = 0; i < indivAddPadres.getPadres().getNumeroElementos(); i++) {
-            arbolGenealogico.add(indivAddPadres.getPadres().getElemento(i).getData());
-            addPadres(indivAddPadres, arbolGenealogico);
+    private void addPadres(ListaEnlazada<Individuo> indivAddPadres, ArbolBinarioDeBusqueda<Individuo> arbolGenealogico){
+        for (Integer i = 0; i < indivAddPadres.getNumeroElementos(); i++) {
+            arbolGenealogico.add(indivAddPadres.getElemento(i).getData());
         }
+
+//        if(indivAddPadres!=null) {
+//            for (Integer i = 0; i < indivAddPadres.getNumeroElementos(); i++) {
+//                arbolGenealogico.add(indivAddPadres.getElemento(i).getData());
+//                if(indivAddPadres!=null) {
+//                    addPadres(indivAddPadres, arbolGenealogico);
+//                }
+//            }
+//        }
     }
 
     private ArbolBinarioDeBusqueda<Individuo> getArbolSuperviviente(Individuo individuoSuperviviente){
         ArbolBinarioDeBusqueda<Individuo> arbolGenealogico= new ArbolBinarioDeBusqueda<>();
         arbolGenealogico.add(individuoSuperviviente);
-        addPadres(individuoSuperviviente, arbolGenealogico);
-
+        if(individuoSuperviviente.getPadres()!=null) {
+            addPadres(individuoSuperviviente.getPadres(), arbolGenealogico);
+        }
         return arbolGenealogico;
 
     }

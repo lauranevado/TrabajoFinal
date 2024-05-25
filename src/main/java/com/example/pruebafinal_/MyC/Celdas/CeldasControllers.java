@@ -4,6 +4,8 @@ import com.example.pruebafinal_.MyC.Datos.Individuo;
 import com.example.pruebafinal_.MyC.Datos.Recurso;
 import com.example.pruebafinal_.MyC.Estructuras.Listas.ListaEnlazada;
 import com.example.pruebafinal_.MyC.Estructuras.grafo.Cola;
+import com.example.pruebafinal_.MyC.Estructuras.grafo.Vertice;
+import com.example.pruebafinal_.MyC.JuegoDeLaVida;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosProperties;
 import com.example.pruebafinal_.MyC.Tablero.TableroControllers;
 import javafx.fxml.FXML;
@@ -13,6 +15,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,6 +32,7 @@ public class  CeldasControllers implements Initializable {
     private CeldasProperties modelo;
     private Stage scene;
     private  Integer idCelda;
+    private  final Logger log= LogManager.getLogger(JuegoDeLaVida.class);
 
 
 
@@ -57,17 +62,18 @@ public class  CeldasControllers implements Initializable {
                     if (recursoElegido== aguaRadioButton){
                         Recurso agua= new Recurso(0, tiempoDeAparicionProperty().getValue() ,  modelo.original.getIdentificadorCelda(), ParametrosProperties.probabilidadDeAparicionProperty().getValue(), ParametrosProperties.pAgua().getValue(), ParametrosProperties.vidaAguaSumaProperty().getValue());
                         celdas.getElemento(idCelda).getData().getRecursos().add(agua);
-                        System.out.println("Se ha añadido agua a la celda "+ idCelda );
+                        log.info("Se ha añadido agua a la celda "+ idCelda );
+
                     }
                     else if (recursoElegido== comidaRadioButton){
                         Recurso comida= new Recurso(1, tiempoDeAparicionProperty().getValue() ,  modelo.original.getIdentificadorCelda(), ParametrosProperties.probabilidadDeAparicionProperty().getValue(), ParametrosProperties.pComida().getValue(), ParametrosProperties.vidaComidaSumaProperty().getValue());
                         celdas.getElemento(idCelda).getData().getRecursos().add(comida);
-                        System.out.println("Se ha añadido comida a la celda "+ idCelda );
+                        log.info("Se ha añadido comida a la celda "+ idCelda );
                     }
                     else if (recursoElegido== montanaRadioButton){
                         Recurso montana= new Recurso(2, tiempoDeAparicionProperty().getValue() ,  modelo.original.getIdentificadorCelda(), ParametrosProperties.probabilidadDeAparicionProperty().getValue(), ParametrosProperties.pMontana().getValue(), ParametrosProperties.vidaMontanaRestaProperty().getValue());
                         celdas.getElemento(idCelda).getData().getRecursos().add(montana);
-                        System.out.println("Se ha añadido montaña a la celda "+ idCelda );
+                        log.info("Se ha añadido montaña a la celda "+ idCelda );
                     }
                     else if (recursoElegido== tesoroRadioButton){
                         Recurso tesoro= new Recurso(3, tiempoDeAparicionProperty().getValue() ,  modelo.original.getIdentificadorCelda(), ParametrosProperties.probabilidadDeAparicionProperty().getValue(), ParametrosProperties.pTesoro().getValue(), ParametrosProperties.pReproTesoroSumaProperty().getValue());
@@ -102,19 +108,23 @@ public class  CeldasControllers implements Initializable {
             if (individuoElegido != null) {
                 if (celdas.getElemento(idCelda).getData().getIndividuos().getNumeroElementos() < 3) {
                     if (individuoElegido == basicoRadioButton) {
-                        Individuo individuoBasico = new Individuo(0,numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new Cola<>());
+                        Individuo individuoBasico = new Individuo(0,numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new ListaEnlazada<Individuo>(), new Cola<>());
+                        grafoColaIndividuos.addVertices(new Vertice<>(individuoBasico.colaIndividuo));
                         numIndividuosTotales++;
                         celdas.getElemento(idCelda).getData().getIndividuos().add(individuoBasico);
-                        System.out.println("Se ha añadido un individuo básico a la celda "+ idCelda );
+                        log.info("Se ha añadido un individuo básico a la celda "+ idCelda );
+
                     }
                     if (individuoElegido == normalRadioButton) {
-                        Individuo individuoNormal = new Individuo(1, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(), TableroControllers.celdaAleatoria(idCelda),new Cola<>());
+                        Individuo individuoNormal = new Individuo(1, numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue(),new ListaEnlazada<Individuo>(), TableroControllers.celdaAleatoria(idCelda),new Cola<>());
+                        grafoColaIndividuos.addVertices(new Vertice<>(individuoNormal.colaIndividuo));
                         numIndividuosTotales++;
                         celdas.getElemento(idCelda).getData().getIndividuos().add(individuoNormal);
                         System.out.println("Se ha añadido un individuo normal a la celda "+ idCelda );
                     }
                     if (individuoElegido == avanzadoRadioButton) {
-                        Individuo individuoAvanzado = new Individuo(2,numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue() , new Cola<>());
+                        Individuo individuoAvanzado = new Individuo(2,numIndividuosTotales, turnosDeVidaProperty().getValue(), turnosJuego, pRepProperty().getValue(), pClonProperty().getValue() ,new ListaEnlazada<Individuo>(), new Cola<>());
+                        grafoColaIndividuos.addVertices(new Vertice<>(individuoAvanzado.colaIndividuo));
                         numIndividuosTotales++;
                         celdas.getElemento(idCelda).getData().individuos.add(individuoAvanzado);
                         System.out.println("Se ha añadido un individuo avanzado a la celda "+ idCelda );

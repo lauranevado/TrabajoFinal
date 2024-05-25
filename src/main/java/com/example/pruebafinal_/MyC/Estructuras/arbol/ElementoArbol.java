@@ -46,28 +46,39 @@ public class ElementoArbol<tipoDeDato>{
     }
 
     protected void addElemento(tipoDeDato numero){
+
+        //Dadas las necesidades del programa, modificamos la función:
         ElementoArbol ela =new ElementoArbol<>(numero);
 
-        Comparable datoraiz = (Comparable) this.getData();
-        Comparable datonumero = (Comparable) numero;
-        int rdo  = datoraiz.compareTo(datonumero);
-        /* -1 si es menor, 0 si es igual, 1 si es mayor */
-
-
-        if(rdo==0){
-            System.out.println("No se ha podido insertar porque ya está en el árbol.");
-        }else if(rdo ==-1){
-            if(this.derecha==null){
-                this.derecha=ela;
-            }else{
-                this.derecha.addElemento(numero);
-            }
-        }else if(rdo ==1) {
-            if (this.izquierda == null) {
-                this.izquierda = ela;
-            } else {
-                this.izquierda.addElemento(numero);
-            }
+        if(this.derecha!= null){
+            this.derecha=ela;
+        }else{
+            this.izquierda= ela;
         }
+
+//        Comparable datoraiz = (Comparable) this.getData();
+//        Comparable datonumero = (Comparable) numero;
+//        int rdo  = datoraiz.compareTo(datonumero);
+//        /* -1 si es menor, 0 si es igual, 1 si es mayor */
+//
+//
+//        if(rdo==0){
+//            System.out.println("No se ha podido insertar porque ya está en el árbol.");
+//        }else if(rdo ==-1){
+//            if(this.derecha==null){
+//                this.derecha=ela;
+//            }else{
+//                this.derecha.addElemento(numero);
+//            }
+//        }else if(rdo ==1) {
+//            if (this.izquierda == null) {
+//                this.izquierda = ela;
+//            } else {
+//                this.izquierda.addElemento(numero);
+//            }
+//        }
+
+
+
     }
 }

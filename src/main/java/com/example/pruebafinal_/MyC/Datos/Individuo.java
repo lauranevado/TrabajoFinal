@@ -14,10 +14,8 @@ public class Individuo {
     private int turnosDeVida;
     @Expose
     private int generacion; //es el turno en el que ha sido creado
-
-    //private Color color;
     @Expose
-    private ListaEnlazada<Individuo> padres = new ListaEnlazada<>(); //puede tener 1 padre (se ha clonado) o 2 padres
+    public ListaEnlazada<Individuo> padres = new ListaEnlazada<>(); //puede tener 1 padre (se ha clonado) o 2 padres
     @Expose
     private int pReproCadaIndividuo;
     @Expose
@@ -27,15 +25,15 @@ public class Individuo {
     @Expose
     public Cola<Object> colaIndividuo;
 
-    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, Cola colaIndividuo) {
-        this.tipo = tipo;
-        this.id = id;
-        this.turnosDeVida = turnosDeVida;
-        this.generacion = generacion;
-        this.pReproCadaIndividuo = pReproCadaIndividuo;
-        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
-        this.colaIndividuo = colaIndividuo;
-    }
+//    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, Cola colaIndividuo) {
+//        this.tipo = tipo;
+//        this.id = id;
+//        this.turnosDeVida = turnosDeVida;
+//        this.generacion = generacion;
+//        this.pReproCadaIndividuo = pReproCadaIndividuo;
+//        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
+//        this.colaIndividuo = colaIndividuo;
+//    }
 
     public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, ListaEnlazada<Individuo> padres, Cola colaIndividuo) {
         this.tipo = tipo;
@@ -50,16 +48,16 @@ public class Individuo {
 
 
     //Constructores para el normal
-    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, int celdaObjetivoNormal, Cola colaIndividuo) {
-        this.tipo = tipo;
-        this.id = id;
-        this.turnosDeVida = turnosDeVida;
-        this.generacion = generacion;
-        this.pReproCadaIndividuo = pReproCadaIndividuo;
-        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
-        this.celdaObjetivoNormal = celdaObjetivoNormal;
-        this.colaIndividuo = colaIndividuo;
-    }
+//    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, int celdaObjetivoNormal, Cola colaIndividuo) {
+//        this.tipo = tipo;
+//        this.id = id;
+//        this.turnosDeVida = turnosDeVida;
+//        this.generacion = generacion;
+//        this.pReproCadaIndividuo = pReproCadaIndividuo;
+//        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
+//        this.celdaObjetivoNormal = celdaObjetivoNormal;
+//        this.colaIndividuo = colaIndividuo;
+//    }
 
     public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, ListaEnlazada<Individuo> padres, int celdaObjetivoNormal, Cola colaIndividuo) {
         this.tipo = tipo;
