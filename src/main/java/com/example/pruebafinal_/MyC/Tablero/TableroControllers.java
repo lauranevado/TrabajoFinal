@@ -20,7 +20,6 @@ import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaControll
 import com.example.pruebafinal_.MyC.Parametros.Parametros;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosPartidaControllers;
 import com.example.pruebafinal_.MyC.Parametros.ParametrosProperties;
-//import com.example.pruebafinal_.MyC.PartidaFinalizada.InformacionPartidaProperties;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -84,10 +83,6 @@ public class TableroControllers implements Initializable {
     private ParametrosProperties parametrosCompartir = new ParametrosProperties(parametros);
 
 
-
-    //private InformacionPartidaProperties informacionPartidaProperties = new InformacionPartidaProperties(informacionPartida);
-
-
     @FXML
     private void crearNuevoTablero(){
         tableroJuego.setVisible(true);
@@ -111,11 +106,11 @@ public class TableroControllers implements Initializable {
             for (Integer j = 0; j < valorLado; j++) {
                 Button celdaButton = new Button();
                 celdaButton.setId(String.valueOf(ident));
+                celdaButton.setOpacity(1.0);
                 GridPane.setRowIndex(celdaButton, i);
                 GridPane.setColumnIndex(celdaButton, j);
                 celdaButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 celdaButton.setStyle("-fx-background-color: #cef18c");
-                //celdaButton.setOpacity(1.0);
                 celdaButton.setOnAction((ActionEvent event) -> {
                     System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
                     onCeldaButtonClick(celdaButton, event);
@@ -152,7 +147,8 @@ public class TableroControllers implements Initializable {
     }
 
     @FXML
-    private void cargarTablero( DatosCargados datosCargados){
+    private void cargarTablero( ){
+        crearNuevoTablero();
 //        String rutaArchivo = "partidas.json";
 //        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
 //        if (datosCargadosPartida1 != null){
@@ -183,104 +179,101 @@ public class TableroControllers implements Initializable {
 
 
 
-        modelo.setOriginal(new Tablero(datosCargados.celdas));
-
-        tableroJuego.setVisible(true);
-
-        //Vaciamos el gridpane
-        informacionGridPane.getChildren().clear();
-        informacionGridPane.setAlignment(Pos.CENTER);
-        informacionGridPane.setMinSize(400, 700);
-
-
-        ///Vaciamos el gridPane en el que vamos a crear los el tablero de botones
-        tableroJuego.getChildren().clear();
-        tableroJuego.setPadding(new Insets(valorAltura * valorLado));
-        tableroJuego.setGridLinesVisible(true);
-        tableroJuego.setHgap(0);
-        tableroJuego.setVgap(0);
-        tableroJuego.setMinSize(800, 800);
-        tableroJuego.setAlignment(Pos.CENTER);
-        Integer ident = 0;
-        for (Integer i = 0; i < valorAltura; i++) {
-            for (Integer j = 0; j < valorLado; j++) {
-                Button celdaButton = new Button();
-                celdaButton.setId(String.valueOf(ident));
-                GridPane.setRowIndex(celdaButton, i);
-                GridPane.setColumnIndex(celdaButton, j);
-                celdaButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                celdaButton.setStyle("-fx-background-color: #cef18c");
-                celdaButton.setOnAction((ActionEvent event) -> {
-                    System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
-                    onCeldaButtonClick(celdaButton, event);
-                });
-
-                GridPane fondoCelda = new GridPane();
-                fondoCelda.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
-                ListaEnlazada<StackPane> listaCuadraditos = new ListaEnlazada<>();
-                for (Integer p1 = 0; p1 < 3; p1++) {
-                    for (Integer p2 = 0; p2 < 2; p2++) {
-                        StackPane cuadraditoanadir = createRectangle(Color.LIGHTGRAY);
-                        cuadraditoanadir.resize(Double.MAX_VALUE, Double.MAX_VALUE);
-                        listaCuadraditos.add(cuadraditoanadir);
-                        fondoCelda.add(cuadraditoanadir, p1, p2);
-                    }
-                }
-                celdaButton.setGraphic(fondoCelda);
-
-                tableroJuego.getChildren().add(celdaButton);
-                GridPane.setHgrow(celdaButton, Priority.ALWAYS);
-                GridPane.setVgrow(celdaButton, Priority.ALWAYS);
-                tableroJuego.setDisable(false);
-
-//                ListaEnlazada<Individuo> inds = new ListaEnlazada<>();
-//                ListaEnlazada<Recurso> recs = new ListaEnlazada<>();
-//                Celdas cel = new Celdas(inds, recs, ident, i, j,listaCuadraditos);
-//                celdas.add(cel);
-                ident++;
-            }
-        }
-
-//        String rutaArchivo = "partidas.json";
+//        modelo.setOriginal(new Tablero(datosCargados.celdas));
 //
-//        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
+//        tableroJuego.setVisible(true);
 //
-//        if (datosCargadosPartida1 != null){
-//            System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
-//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
-//            pRepProperty().setValue(datosCargadosPartida1.getpRep());
-//            pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
-//            pClonProperty().setValue(datosCargadosPartida1.getpClon());
-//            ladoProperty().setValue(datosCargadosPartida1.getLado());
-//            alturaProperty().setValue(datosCargadosPartida1.getAltura());
-//            tiempoDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
-//            probabilidadDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
-//            vidaAguaSumaProperty().setValue(datosCargadosPartida1.getVidaAguaSuma());
-//            pAgua().setValue(datosCargadosPartida1.getpAgua());
-//            vidaComidaSumaProperty().setValue(datosCargadosPartida1.getVidaComidaSuma());
-//            pComida().setValue(datosCargadosPartida1.getpComida());
-//            vidaMontanaRestaProperty().setValue(datosCargadosPartida1.getVidaMontanaResta());
-//            pMontana().setValue(datosCargadosPartida1.getpMontana());
-//            pReproTesoroSumaProperty().setValue(datosCargadosPartida1.getpReproTesoroSuma());
-//            pTesoro().setValue(datosCargadosPartida1.getpTesoro());
-//            pClonacionBibliotecaSumaProperty().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
-//            pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
-//            muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
-//            pPozo().setValue(datosCargadosPartida1.getpPozo());
+//        //Vaciamos el gridpane
+//        informacionGridPane.getChildren().clear();
+//        informacionGridPane.setAlignment(Pos.CENTER);
+//        informacionGridPane.setMinSize(400, 700);
 //
-//            for (Integer i=0; i< celdas.getNumeroElementos(); i++){
-//                celdas.getElemento(i).getData().setData(datosCargadosPartida1.celdas.getElemento(i).getData());
+//
+//        ///Vaciamos el gridPane en el que vamos a crear los el tablero de botones
+//        tableroJuego.getChildren().clear();
+//        tableroJuego.setPadding(new Insets(valorAltura * valorLado));
+//        tableroJuego.setGridLinesVisible(true);
+//        tableroJuego.setHgap(0);
+//        tableroJuego.setVgap(0);
+//        tableroJuego.setMinSize(800, 800);
+//        tableroJuego.setAlignment(Pos.CENTER);
+//        Integer ident = 0;
+//        for (Integer i = 0; i < valorAltura; i++) {
+//            for (Integer j = 0; j < valorLado; j++) {
+//                Button celdaButton = new Button();
+//                celdaButton.setId(String.valueOf(ident));
+//                GridPane.setRowIndex(celdaButton, i);
+//                GridPane.setColumnIndex(celdaButton, j);
+//                celdaButton.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+//                celdaButton.setStyle("-fx-background-color: #cef18c");
+//                celdaButton.setOnAction((ActionEvent event) -> {
+//                    System.out.println("EL BOTÓN " + celdaButton.getId() + " HA SIDO PULSADO");
+//                    onCeldaButtonClick(celdaButton, event);
+//                });
+//
+//                GridPane fondoCelda = new GridPane();
+//                fondoCelda.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+//                ListaEnlazada<StackPane> listaCuadraditos = new ListaEnlazada<>();
+//                for (Integer p1 = 0; p1 < 3; p1++) {
+//                    for (Integer p2 = 0; p2 < 2; p2++) {
+//                        StackPane cuadraditoanadir = createRectangle(Color.LIGHTGRAY);
+//                        cuadraditoanadir.resize(Double.MAX_VALUE, Double.MAX_VALUE);
+//                        listaCuadraditos.add(cuadraditoanadir);
+//                        fondoCelda.add(cuadraditoanadir, p1, p2);
+//                    }
+//                }
+//                celdaButton.setGraphic(fondoCelda);
+//
+//                tableroJuego.getChildren().add(celdaButton);
+//                GridPane.setHgrow(celdaButton, Priority.ALWAYS);
+//                GridPane.setVgrow(celdaButton, Priority.ALWAYS);
+//                tableroJuego.setDisable(false);
+//
+//                celdas= cargarObjetoDesdeArchivo("partidas.json").celdas;
+//                ident++;
 //            }
-//
-//            //celdas= datosCargadosPartida1.getCeldas();
-//            turnosJuego= datosCargadosPartida1.getTurnosJuego();
-//
-//
 //        }
-        //crearIndividuosIniciales();
-        actualizarPaneLateral();
-//        crearRecursos();
-        updateTablero();
+//
+////        String rutaArchivo = "partidas.json";
+////
+////        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
+////
+////        if (datosCargadosPartida1 != null){
+////            System.out.println("Partida cargada:(num turnos) " + datosCargadosPartida1.getTurnosJuego());
+////            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+////            pRepProperty().setValue(datosCargadosPartida1.getpRep());
+////            pMuerteProperty().setValue(datosCargadosPartida1.getpMuerte());
+////            pClonProperty().setValue(datosCargadosPartida1.getpClon());
+////            ladoProperty().setValue(datosCargadosPartida1.getLado());
+////            alturaProperty().setValue(datosCargadosPartida1.getAltura());
+////            tiempoDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+////            probabilidadDeAparicionProperty().setValue(datosCargadosPartida1.getProbabilidadDeAparicion());
+////            vidaAguaSumaProperty().setValue(datosCargadosPartida1.getVidaAguaSuma());
+////            pAgua().setValue(datosCargadosPartida1.getpAgua());
+////            vidaComidaSumaProperty().setValue(datosCargadosPartida1.getVidaComidaSuma());
+////            pComida().setValue(datosCargadosPartida1.getpComida());
+////            vidaMontanaRestaProperty().setValue(datosCargadosPartida1.getVidaMontanaResta());
+////            pMontana().setValue(datosCargadosPartida1.getpMontana());
+////            pReproTesoroSumaProperty().setValue(datosCargadosPartida1.getpReproTesoroSuma());
+////            pTesoro().setValue(datosCargadosPartida1.getpTesoro());
+////            pClonacionBibliotecaSumaProperty().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+////            pBiblioteca().setValue(datosCargadosPartida1.getpClonacionBiblioteca());
+////            muertePozoProperty().setValue(datosCargadosPartida1.getMuertePozo());
+////            pPozo().setValue(datosCargadosPartida1.getpPozo());
+////
+////            for (Integer i=0; i< celdas.getNumeroElementos(); i++){
+////                celdas.getElemento(i).getData().setData(datosCargadosPartida1.celdas.getElemento(i).getData());
+////            }
+////
+////            //celdas= datosCargadosPartida1.getCeldas();
+////            turnosJuego= datosCargadosPartida1.getTurnosJuego();
+////
+////
+////        }
+//        //crearIndividuosIniciales();
+//        actualizarPaneLateral();
+////        crearRecursos();
+//        updateTablero();
     }
 
         ///////////////////////Funciones///////////////////////////////////
@@ -739,15 +732,6 @@ public class TableroControllers implements Initializable {
         String rutaArchivo = "partidas.json";
 
         guardarPartidaEnArchivo(rutaArchivo, datosPartida1);
-        //System.out.println("guardada: " + isPartidaCargada());
-
-        DatosCargados datosCargadosPartida1 = cargarObjetoDesdeArchivo(rutaArchivo);
-
-        if (datosPartida1 != null){
-            System.out.println("Partida cargada: (num turnos)" + datosCargadosPartida1.getTurnosJuego());
-            System.out.println(celdas);
-            System.out.println(datosCargadosPartida1.celdas);
-        }
         log.info("Se guardó la partida");
     }
     ////////////////////////////////////////Bucle de control////////////////////////////////////////////
@@ -782,9 +766,6 @@ public class TableroControllers implements Initializable {
                         Individuo ind2 = celdas.getElemento(i).getData().individuos.getElemento(j).getData();
                         grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("Se ha muerto el individuo ");
 
-
-//                        Vertice v = new Vertice<>(celdas.getElemento(i).getData().individuos.getElemento(j).getData().colaIndividuo);  //Añadimso la cola en un vertice para así poder
-//                        grafoColaIndividuos.addVertices(v);
                         celdas.getElemento(i).getData().individuos.del(j);
                         j--;
                     }
@@ -818,8 +799,6 @@ public class TableroControllers implements Initializable {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
                             ind.setTurnosDeVida(ind.getTurnosDeVida() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
-                            // System.out.println("Se sumaron "+vidaAguaSumaProperty().getValue()+"por el agua ");
-
                             grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("agua");
                         }
                     }
@@ -827,8 +806,6 @@ public class TableroControllers implements Initializable {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
                             ind.setTurnosDeVida(ind.getTurnosDeVida() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
-                            //  System.out.println("Se sumaron "+vidaAguaSumaProperty().getValue()+" vidas por la comida ");
-
                             grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("comida");
                         }
                     }
@@ -836,8 +813,6 @@ public class TableroControllers implements Initializable {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
                             ind.setTurnosDeVida(ind.getTurnosDeVida() - celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
-
-                            ind.colaIndividuo.add(ind.getTurnosDeVida());
                             grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("montaña");
                         }
                     }
@@ -845,19 +820,13 @@ public class TableroControllers implements Initializable {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
                             ind.setpReproCadaIndividuo(ind.getpReproCadaIndividuo() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
-
-                            ind.colaIndividuo.add(ind.getTurnosDeVida());
                             grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("tesoro");
                         }
                     }
                     if (celdas.getElemento(i).getData().recursos.getElemento(j).getData().getColor() == Color.HOTPINK) {
                         for (Integer m = 0; m < celdas.getElemento(i).getData().individuos.getNumeroElementos(); m++) {
                             Individuo ind = celdas.getElemento(i).getData().individuos.getElemento(m).getData();
-                            // ind.setTurnosDeVida(ind.getTurnosDeVida()+pClonacionBibliotecaSumaProperty().getValue());  //Debe poder subir el tipo de individuo
                             ind.setpClonacionCadaIndividuo(ind.getpClonacionCadaIndividuo() + celdas.getElemento(i).getData().recursos.getElemento(j).getData().getPropiedad());
-                            // System.out.println("Se sumaron "+pClonacionBibliotecaSumaProperty().getValue()+" vidas y aumentó en un "+pClonacionBibliotecaSumaProperty().getValue());
-
-                            grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add(ind.getTurnosDeVida());
                             grafoColaIndividuos.getVertice(ind.getColaIndividuo()).getData().add("biblioteca");
                         }
                     }
@@ -888,7 +857,6 @@ public class TableroControllers implements Initializable {
             int coordY= celdasAdy.getElemento(numAleatorio).getData().getCoordY();
 
             // Mover el individuo a la nueva celda
-
             Celdas celda1 = celdas.getElemento(getPosCelda(coordX,coordY)).getData();
             celda1.individuos.add(indBasico);
             celdas.getElemento(celda).getData().individuos.del(posIndividuo);
@@ -902,7 +870,6 @@ public class TableroControllers implements Initializable {
     public ListaEnlazada<Integer> nuevaCelda(ListaEnlazada<Integer> listaX, ListaEnlazada<Integer> listaY) {
         ListaEnlazada<Integer> nuevasCoordenadas = new ListaEnlazada<>();
         Random random = new Random();
-
         if (!listaX.isVacia() && !listaY.isVacia()) {
             int aleatorioX = random.nextInt(listaX.getNumeroElementos());
             int aleatorioY = random.nextInt(listaY.getNumeroElementos());
@@ -917,7 +884,6 @@ public class TableroControllers implements Initializable {
         ListaEnlazada<Celdas> lista = new ListaEnlazada<>();
         int coordX = celdas.getElemento(posCelda).getData().getCoordX();
         int coordY = celdas.getElemento(posCelda).getData().getCoordX();
-
         if (coordX > 0) {
             Celdas izquierda = celdas.getElemento(getPosCelda(coordX - 1, coordY)).getData();
             lista.add(izquierda);
@@ -929,7 +895,6 @@ public class TableroControllers implements Initializable {
         if (coordX > 0 && coordY > 0) {
             Celdas diagonalIzq = celdas.getElemento(getPosCelda(coordX  , coordY + 1)).getData();
             lista.add(diagonalIzq);
-
         }
         if (coordX < ladoProperty().getValue() - 1 && coordY > 0) {
             Celdas diagonalDer = celdas.getElemento(getPosCelda(coordX + 1, coordX )).getData();
@@ -952,7 +917,6 @@ public class TableroControllers implements Initializable {
             int altura = random.nextInt(alturaProperty().getValue());
             if (celdas.getElemento(getPosCelda(lado, altura)).getData().recursos != null && getPosCelda(lado, altura) != celdaAnterior) {
                 nuevaCelda = getPosCelda(lado, altura);
-
 
             } else {
                 return celdaAleatoria(celdaAnterior);
@@ -978,61 +942,40 @@ public class TableroControllers implements Initializable {
 
         if (coordDestX == coordOriX && coordDestY == coordOriY) {
             celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().setCeldaObjetivoNormal(celdaAleatoria(celdaOriginal));
-
         }
 
         if (coordOriX != coordDestX || coordOriY != coordDestY) {
-
-
             if (coordDestX < coordOriX) {
-
                 coordOriX--;
                 celdas.getElemento(getPosCelda(coordOriX, coordOriY)).getData().individuos.add(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData());
                 celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().colaIndividuo.add("El individuo se movio a la celda " + getPosCelda(coordOriX, coordOriY));
                 celdas.getElemento(celdaOriginal).getData().individuos.del(individuo);
                 updateTablero();
-
             } else if (coordDestX > coordOriX) {
-
-
                 coordOriX++;
                 celdas.getElemento(getPosCelda(coordOriX, coordOriY)).getData().individuos.add(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData());
                 celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().colaIndividuo.add("El individuo se movio a la celda " + getPosCelda(coordOriX, coordOriY));
-
                 celdas.getElemento(celdaOriginal).getData().individuos.del(individuo);
                 updateTablero();
-
             } else if (coordDestY < coordOriY) {
-
-
                 coordOriY--;
                 celdas.getElemento(getPosCelda(coordOriX, coordOriY)).getData().individuos.add(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData());
                 celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().colaIndividuo.add("El individuo se movio a la celda " + getPosCelda(coordOriX, coordOriY));
-
                 celdas.getElemento(celdaOriginal).getData().individuos.del(individuo);
-
-
             } else if (coordDestY > coordOriY) {
                 coordOriY++;
                 celdas.getElemento(getPosCelda(coordOriX, coordOriY)).getData().individuos.add(celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData());
                 celdas.getElemento(celdaOriginal).getData().individuos.getElemento(individuo).getData().colaIndividuo.add("El individuo se movio a la celda " + getPosCelda(coordOriX, coordOriY));
                 celdas.getElemento(celdaOriginal).getData().individuos.del(individuo);
-
             }
-
-
-
         }
-        updateTablero();
-
+        //updateTablero();
     }
 
 
 
 
     ///////////////Movimiento del avanzado////////////////
-
-
 
     public void moverAvanzado(int posCelda, int individuo) {
         ListaSimple<Integer> recursosPositivos = new ListaSimple<>();
@@ -1049,9 +992,8 @@ public class TableroControllers implements Initializable {
             ListaEnlazada<Vertice<Celdas>> camino = buscarRecorridoAvanzado(recursosPositivos, posCelda, individuo);
             // ListaEnlazada<Celdas> recorrido= traducirCamino(camino);
             realizarCaminoAvanzado(camino, individuo);
-            ;
-        }
 
+        }
     }
 
     public void realizarCaminoAvanzado(ListaEnlazada<Vertice<Celdas>> recorrido, int individuo) {
@@ -1125,7 +1067,6 @@ public class TableroControllers implements Initializable {
 
     public ListaEnlazada<Celdas> traducirCamino(Camino camino) {
         ListaEnlazada<Celdas> recorrido = new ListaEnlazada<>();
-
         for (Integer i = 0; i < camino.getCamino().getNumeroElementos(); i++) {
             recorrido.add((Celdas) camino.getCamino().getElementoLS(i).getData());
         }
@@ -1142,8 +1083,6 @@ public class TableroControllers implements Initializable {
         for (int alto = 0; alto < alturaProperty().getValue(); alto++) {
             for (int lado = 0; lado < ladoProperty().getValue(); lado++) {
                 Celdas celdaActual = celdas.getElemento(getPosCelda(lado, alto)).getData();
-
-
                 int pesoHacia = calcularPesoArista(celdaActual);
                 if (lado > 0) {
                     Celdas izquierda = celdas.getElemento(getPosCelda(lado - 1, alto)).getData();
@@ -1189,12 +1128,9 @@ public class TableroControllers implements Initializable {
                 } else {
                     peso = 34;
                 }
-
             }
-
         }
         return peso;
-
     }
 
 
@@ -1203,26 +1139,25 @@ public class TableroControllers implements Initializable {
         for (Integer i = 0; i < celdas.getNumeroElementos(); i++) {
             for (Integer j = 0; j < celdas.getElemento(i).getData().individuos.getNumeroElementos(); j++) {
                 if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 0) {//es básico
-                    System.out.println("Se mueve el básico");
+                    log.info("Se mueve el básico");
                     moverIndividuoBasico(celdas.getElemento(i).getData().individuos.getElemento(j).getData(), celdas.getElemento(i).getData().getIdentificadorCelda(), j);
-                    updateTablero();
+                    //updateTablero();
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 1) {//es normal
-                    System.out.println("Se mueve el normal");
-                    System.out.println("La nuevaaaaaaaaa essss " + celdaAleatoria(i));
+                    log.info("Se mueve el normal");
 
                     moverNormal(i, j);
-                    updateTablero();
+                    //updateTablero();
                     System.out.println("ya se ha movido el normal.");
 
                 } else if (celdas.getElemento(i).getData().individuos.getElemento(j).getData().getTipo() == 2) {//es advanced
-                    System.out.println("Se mueve el avanzado");
+                    log.info("Se mueve el avanzado");
                     moverNormal(i, j);
-                    updateTablero();
+                    //updateTablero();
 
                 }
             }
         }
-        updateTablero();
+        //updateTablero();
     }
 
 
@@ -1254,7 +1189,6 @@ public class TableroControllers implements Initializable {
                         celdas.getElemento(i).getData().individuos.vaciar(); //como sólo se reproducen cuando hay únicamente 2, si no se reproducen se mueren los dos.
 
                     }
-
                 }
             }
         }
@@ -1339,8 +1273,6 @@ public class TableroControllers implements Initializable {
     @FXML
     public void turnoPasa() {
         turnosJuego++;
-
-
         actualizarTurnoIndividuos();
         actualizarTurnoVidaRecursos();
 
@@ -1375,16 +1307,11 @@ public class TableroControllers implements Initializable {
                         Stage stage = new Stage();
                         FXMLLoader fxmlLoader=new FXMLLoader(Tablero.class.getResource("/com/example/pruebafinal_/juego-informacion-partida.fxml"));
                         try {
-//                            Stage stageInfoBorrar = (Stage) informacionComoJugarButton.getScene().getWindow();
-//                            stageInfoBorrar.close(); //para borrar la que yo quiera
                             Scene scene = new Scene(fxmlLoader.load());
                             stage.setTitle("Información de la partida");
                             log.info("Información de la partida");
                             stage.setScene(scene);
                             stage.setResizable(false);
-//                            stage.initModality(Modality.APPLICATION_MODAL);
-//                            Stage stageAnterior = (Stage) ((Button) event.getSource()).getScene().getWindow();
-//                            stage.initOwner(stageAnterior);
                             InformacionPartidaControllers infoController = fxmlLoader.getController();
                             infoController.loadInformacionPartidaData(informacionPartida);
                             infoController.setStage(stage);
@@ -1420,8 +1347,7 @@ public class TableroControllers implements Initializable {
         System.out.println("Inicialización del tablero");
 
         if(isPartidaCargada()==true){
-            cargarTablero(cargarObjetoDesdeArchivo("partidas.json"));
-            //crearNuevoTablero();
+            cargarTablero();
         } else {
             crearNuevoTablero();
 

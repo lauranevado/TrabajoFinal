@@ -47,7 +47,7 @@ public class DatosCargados {
     @Expose
     public int pTesoro;
     @Expose
-    public int pClonacionBiblioteca;  //Además te aumenta 1 el nivel del tipo de invidivuo
+    public int pClonacionBiblioteca;
     @Expose
     public int pBiblioteca;
     @Expose

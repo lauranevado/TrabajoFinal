@@ -32,14 +32,11 @@ public class InformacionPartidaControllers implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        if (this.modelo!= null) {
-            log.info("Se ha inicializado");
-            //turnosJugadosLabel.setText(String.valueOf(modelo.getTurnosJugados()));
-            turnosJugadosLabel.setText("10");
-            individuosVivosLabel.setText(String.valueOf(modelo.getIndividuosVivos()));
-            numClonacionesLabel.setText(String.valueOf(modelo.getNumMutaciones()));
-            numReproduccionesLabel.setText(String.valueOf(modelo.getNumReproducciones()));
+        log.info("Se ha inicializado");
+        turnosJugadosLabel.setText("10");
+        individuosVivosLabel.setText("1");
+        numClonacionesLabel.setText("2");
+        numReproduccionesLabel.setText("1");
 
-        }
     }
 }

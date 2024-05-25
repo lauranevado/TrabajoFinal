@@ -131,10 +131,6 @@ public class ParametrosPartidaControllers implements Initializable {
         parametrosTabPane.getSelectionModel().select(siguienteIndex);
     }
 
-    private Tablero tablero= new Tablero( celdas );
-    private TableroProperties tableroCompartir = new TableroProperties(tablero);
-
-
 
 
     @FXML
@@ -156,12 +152,10 @@ public class ParametrosPartidaControllers implements Initializable {
     }
 
     @FXML
-    protected void onVolverPartidaButtonClick(){ ////////////////CAMBIAR
+    protected void onVolverPartidaButtonClick(){
         log.info("Se han cerrado los parámetros de la partida");
         scene.close();
         System.out.println("Cerrado de parámetros");
-        ///HACER MODAL
-
     }
 
 

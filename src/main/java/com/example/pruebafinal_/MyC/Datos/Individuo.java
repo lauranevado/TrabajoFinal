@@ -25,16 +25,6 @@ public class Individuo {
     @Expose
     public Cola<Object> colaIndividuo;
 
-//    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, Cola colaIndividuo) {
-//        this.tipo = tipo;
-//        this.id = id;
-//        this.turnosDeVida = turnosDeVida;
-//        this.generacion = generacion;
-//        this.pReproCadaIndividuo = pReproCadaIndividuo;
-//        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
-//        this.colaIndividuo = colaIndividuo;
-//    }
-
     public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, ListaEnlazada<Individuo> padres, Cola colaIndividuo) {
         this.tipo = tipo;
         this.id = id;
@@ -47,18 +37,7 @@ public class Individuo {
     }
 
 
-    //Constructores para el normal
-//    public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, int celdaObjetivoNormal, Cola colaIndividuo) {
-//        this.tipo = tipo;
-//        this.id = id;
-//        this.turnosDeVida = turnosDeVida;
-//        this.generacion = generacion;
-//        this.pReproCadaIndividuo = pReproCadaIndividuo;
-//        this.pClonacionCadaIndividuo = pClonacionCadaIndividuo;
-//        this.celdaObjetivoNormal = celdaObjetivoNormal;
-//        this.colaIndividuo = colaIndividuo;
-//    }
-
+    //Constructor para el normal
     public Individuo(int tipo, int id, int turnosDeVida, int generacion, int pReproCadaIndividuo, int pClonacionCadaIndividuo, ListaEnlazada<Individuo> padres, int celdaObjetivoNormal, Cola colaIndividuo) {
         this.tipo = tipo;
         this.id = id;

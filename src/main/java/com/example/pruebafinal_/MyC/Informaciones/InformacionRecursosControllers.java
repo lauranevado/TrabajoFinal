@@ -16,14 +16,11 @@ public class InformacionRecursosControllers implements Initializable {
     //Atributos necesarios
     private Stage scene;
 
-
-
-
     public void setStage (Stage s){
         this.scene=s;
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        log.info("Se ha abierto la pestaña de información sobre los recursos");
     }
 }

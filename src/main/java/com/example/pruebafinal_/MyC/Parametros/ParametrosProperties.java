@@ -1,6 +1,5 @@
 package com.example.pruebafinal_.MyC.Parametros;
 
-import com.example.pruebafinal_.MyC.Parametros.Parametros;
 import javafx.beans.property.*;
 
 public class ParametrosProperties {
@@ -36,7 +35,7 @@ public class ParametrosProperties {
     private static IntegerProperty pMontana= new SimpleIntegerProperty();
     private static IntegerProperty pReproTesoroSuma= new SimpleIntegerProperty();
     private static IntegerProperty pTesoro= new SimpleIntegerProperty();
-    private static IntegerProperty pClonacionBibliotecaSuma= new SimpleIntegerProperty();  //También te suma una al nivel del tipo de individuo
+    private static IntegerProperty pClonacionBibliotecaSuma= new SimpleIntegerProperty();
     private static IntegerProperty pBiblioteca= new SimpleIntegerProperty();
     private static IntegerProperty muertePozo= new SimpleIntegerProperty();
     private static IntegerProperty pPozo= new SimpleIntegerProperty();

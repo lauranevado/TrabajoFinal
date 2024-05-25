@@ -78,19 +78,6 @@ public class ParametrosControllers implements Initializable {
     private Label pClonLabel;
     private int valorpClon;
 
-//    @FXML
-//    private Label pBasicoLabel;
-//    private int valorpBasico;
-//
-//    @FXML
-//    private Label pNormalLabel;
-//    private int valorpNormal;
-//
-//    @FXML
-//    private Label pAvanzadoLabel;
-//    private int valorpAvanzado;
-
-
 
 
 
@@ -188,7 +175,7 @@ public class ParametrosControllers implements Initializable {
 
 
     @FXML
-    protected void onInformacionRecursosButtonClick(){ //ponerle el botón redondo y bloquearlo como el otro
+    protected void onInformacionRecursosButtonClick(){
         log.info("Información recursos");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader=new FXMLLoader(Parametros.class.getResource("/com/example/pruebafinal_/juego-informacionRecursos.fxml"));
@@ -436,9 +423,6 @@ public class ParametrosControllers implements Initializable {
         sliderpRep.valueProperty().bindBidirectional(modelo.pRepProperty());
         sliderpMuerte.valueProperty().bindBidirectional(modelo.pMuerteProperty());
         sliderpClon.valueProperty().bindBidirectional(modelo.pClonProperty());
-//        sliderpBasico.valueProperty().bindBidirectional(modelo.pBasicoProperty());
-//        sliderpNormal.valueProperty().bindBidirectional(modelo.pNormalProperty());
-//        sliderpAvanzado.valueProperty().bindBidirectional(modelo.pAvanzadoProperty());
 
         //Tablero
         sliderAltura.valueProperty().bindBidirectional(modelo.alturaProperty());

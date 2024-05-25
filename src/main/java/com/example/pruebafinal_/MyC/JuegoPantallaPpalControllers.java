@@ -30,8 +30,6 @@ import static com.example.pruebafinal_.MyC.Tablero.Tablero.turnosJuego;
 public class JuegoPantallaPpalControllers implements Initializable {
 
     @FXML
-    private Label cargando;
-    @FXML
     private Button nuevaPartidaButton, cargarPartidaButton;
     @FXML
     private Button informacionComoJugarButton;
@@ -55,11 +53,7 @@ public class JuegoPantallaPpalControllers implements Initializable {
     protected void onNuevaPartidaButtonClick(){
         Stage stageBorrar= (Stage) nuevaPartidaButton.getScene().getWindow();
         stageBorrar.close();
-//        Stage stageInfoBorrar = (Stage) informacionComoJugarButton.getScene().getWindow();
-//        stageInfoBorrar.close(); //ahora mismo esto no funciona
-        System.out.println("Se ha cerrado la pantalla principal");
-        log.info("Se ha cerrado la pantalla");
-        cargando.setText("Ha elegido crear una nueva partida");
+        log.info("Se ha cerrado la pantalla principal");
         log.info("Crear una nueva partida");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader=new FXMLLoader(JuegoDeLaVida.class.getResource("/com/example/pruebafinal_/juego-parametros.fxml"));
@@ -76,10 +70,7 @@ public class JuegoPantallaPpalControllers implements Initializable {
         } catch (Exception e) { e.printStackTrace();}
 
     }
-//    @FXML
-//    public void displayImage(){
-//        miImagenView.setImage(miImagen);
-//    }
+
 
     private Tablero tablero= new Tablero( celdas );
     private TableroProperties tableroCompartir = new TableroProperties(tablero);
@@ -134,17 +125,21 @@ public class JuegoPantallaPpalControllers implements Initializable {
             //celdas= datosCargadosPartida1.getCeldas();
             turnosJuego = datosCargadosPartida1.getTurnosJuego();
 
+
         }
 
         Tablero tablero= new Tablero( datosCargadosPartida1.celdas );
         this.tableroCompartir = new TableroProperties(tablero);
 
 
-//        Stage stageBorrar= (Stage) cargarPartidaButton.getScene().getWindow();
-//        stageBorrar.close();
-        System.out.println("Se ha cerrado la pantalla principal");
+
+
+
+
+
+
+
         log.info("Se ha cerrado la pantalla");
-        //cargando.setText("Ha elegido cargar una partida");
         log.info("Cargar una partida");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader=new FXMLLoader(JuegoDeLaVida.class.getResource("/com/example/pruebafinal_/juego-tablero.fxml"));

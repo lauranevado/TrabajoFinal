@@ -25,13 +25,6 @@ public class InformacionPartida {
     private Individuo idSuperviviente;
 
 
-//    public InformacionPartida(int turnosJugados, int individuosVivos, Grafo hjgh) {
-//        this.turnosJugados= turnosJugados;
-//        this.individuosVivos= individuosVivos;
-//        this.numMutaciones= getNumMutaciones();
-//        this.numReproducciones= getNumReproducciones();
-//    }
-
     public InformacionPartida(int turnosJugados, int individuosVivos,Individuo idSuperviviente) {
         this.turnosJugados = turnosJugados;
         this.individuosVivos = individuosVivos;
@@ -66,7 +59,7 @@ public class InformacionPartida {
                 id=i;
             }
         }
-        return id;   //Retornamos simepre el identificador
+        return id;
     }
 
     public int getNumMutaciones(){
@@ -127,7 +120,7 @@ public class InformacionPartida {
             }
 
         }
-        return individuo;   //La posición de las colas en el gfrafo corresponden con sus identificadores
+        return individuo;
     }
 
     public int getIndividuoMasClonaciones(){
@@ -150,7 +143,7 @@ public class InformacionPartida {
             }
 
         }
-        return individuo;  //La posición de las colas en el gfrafo corresponden con sus identificadores
+        return individuo;
     }
 
     public int getIndividuoMasAgua(){

@@ -13,8 +13,6 @@ public class InformacionComoJugarControllers implements Initializable {
     private static final Logger log = LogManager.getLogger(InformacionComoJugarControllers.class);
     private Stage scene;
 
-
-
     public void setStage (Stage s){
         this.scene=s;
     }

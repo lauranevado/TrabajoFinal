@@ -12,12 +12,6 @@ public class ParametrosPartida {
 
     private int pClon;
 
-//    private Double pBasico;
-//
-//    private Double pNormal;
-//
-//    private Double pAvanzado;
-
 
 
     //Atributos recursos
@@ -31,7 +25,7 @@ public class ParametrosPartida {
     private int pMontana;
     private int pReproTesoroSuma;
     private int pTesoro;
-    private int pClonacionBiblioteca;  //Además te aumenta 1 el nivel del tipo de invidivuo
+    private int pClonacionBiblioteca;
     private int pBiblioteca;
     private int muertePozo; //=0 lo mata
     private int pPozo;
@@ -43,9 +37,6 @@ public class ParametrosPartida {
         this.pRep = pRep;
         this.pMuerte = 100-pMuerte;
         this.pClon = pClon;
-//        this.pBasico = pBasico;
-//        this.pNormal = pNormal;
-//        this.pAvanzado = pAvanzado;
         this.tiempoDeAparicion = tiempoDeAparicion;
         this.probabilidadDeAparicion= probabilidadDeAparicion;
         this.vidaAguaSuma = vidaAguaSuma;
@@ -102,30 +93,6 @@ public class ParametrosPartida {
     public void setpClon(int pClon) {
         this.pClon = pClon;
     }
-
-
-
-//    public Double getpBasico() { return pBasico;}
-//
-//    public void setpBasico(Double pBasico) {
-//        this.pBasico = pBasico;
-//    }
-//
-//    public Double getpNormal() {
-//        return pNormal;
-//    }
-//
-//    public void setpNormal(Double pNormal) {
-//        this.pNormal = pNormal;
-//    }
-//
-//    public Double getpAvanzado() {
-//        return pAvanzado;
-//    }
-//
-//    public void setpAvanzado(Double pAvanzado) {
-//        this.pAvanzado = pAvanzado;
-//    }
 
     public int getTiempoDeAparicion() { return tiempoDeAparicion;}
 

@@ -37,7 +37,7 @@ public class Parametros {
     private int pMontana;
     private int pReproTesoroSuma;
     private int pTesoro;
-    private int pClonacionBiblioteca;  //Además te aumenta 1 el nivel del tipo de invidivuo
+    private int pClonacionBiblioteca;
     private int pBiblioteca;
     private int muertePozo; //=0 lo mata
     private int pPozo;
