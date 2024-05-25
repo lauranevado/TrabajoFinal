@@ -5,13 +5,13 @@ autonumber
 actor usuario
 usuario -> JuegoPantallaPpalControllers: iniciar partida
 activate JuegoPantallaPpalControllers
-JuegoPantallaPpalControllers->ParamatrosControllers: seleccionar parametros
-activate ParamatrosControllers
-ParamatrosControllers->TableroControllers: cargar datos partida
+JuegoPantallaPpalControllers->ParametrosControllers: seleccionar parametros
+activate ParametrosControllers
+ParametrosControllers->TableroControllers: cargar datos partida
 activate TableroControllers
 TableroControllers-->usuario: muestra datos
 usuario->TableroControllers:Finalizar partida
-TableroControllers->GuardarControllers: se guarda la información
+TableroControllers->GuardarControllers: se guarda la información y se finaliza la partida
 
 
 @enduml

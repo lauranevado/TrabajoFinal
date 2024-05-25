@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+autonumber
+actor usuario
+usuario -> TableroControllers: cargar partida
+activate TableroControllers
+TableroControllers-->usuario: muestra datos
+usuario->TableroControllers:Finalizar partida
+TableroControllers->GuardarControllers: se guarda la información y se finaliza la partida
+GuardarControllers->JuegoPantallaPpalControllers: volvemos a la pantalla principal
+
+@enduml

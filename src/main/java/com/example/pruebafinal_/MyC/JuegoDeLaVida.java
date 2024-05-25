@@ -38,10 +38,6 @@ public class JuegoDeLaVida extends Application {
         log.info("El juego de la vida");
 
 
-        // Los logs sólo operan si la clase utilizada coincide con el patrón que se pone en el log4j2.xml.
-        // En este caso el patrón es "com.example.pruebafinal_" que coincide con nuestro paquete, por eso funciona.
-
-
     }
 
 
